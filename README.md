@@ -1,7 +1,5 @@
-# express-ts
-A Minimal Express Typescript boilerplate
-
-Use this template repository to create a new Node project with Express and Typescript installed
+# Online Store
+Full Stack project. NodeJS, Express, MongoDB, Angular.
 
 ## Instructions
 

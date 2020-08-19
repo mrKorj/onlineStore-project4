@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
         const token = jwt.sign({email, role: user.role}, SECRET)
 
         res.cookie('token', token, {
-            maxAge: 3600,
+            maxAge: 86400,
             httpOnly: true,
             // secure: true
         })

@@ -1,0 +1,19 @@
+li {
+  margin-right: 30px;
+}
+.my-logo {
+  font-family: 'Lobster', cursive;
+}
+.nav-wrapper {
+  background: linear-gradient(to right, #d81b60, #ad1457, #d81b60);
+}
+i.left {
+  margin-right: 5px !important;
+}
+
+
+@media screen and (max-width: 768px) {
+  li {
+    margin-right: 0 !important;
+  }
+}

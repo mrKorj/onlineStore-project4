@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.main {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+}
+
+.m1 {
+  margin: .25rem;
+}
+
+.m2 {
+  margin: .5rem;
+}
+
+.m3 {
+  margin: 1rem;
+}
+
+.m4 {
+  margin: 1.5rem;
+}
+
+.m5 {
+  margin: 3rem;
+}
+
+.ml-3 {
+  margin-left: 1rem;
+}
+
+.mr-3 {
+  margin-left: 1rem;
+}
+
+.border {
+  border: 1px solid red;
+}

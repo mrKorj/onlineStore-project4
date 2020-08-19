@@ -1,4 +1,4 @@
-import express from 'express'
+import express, {NextFunction, Request, Response} from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import expressJwt from 'express-jwt'
@@ -15,9 +15,17 @@ const {PORT = 4000} = process.env
 export const {SECRET = 'secret'} = process.env
 const app = express()
 
+const cookieToAuthorization = (req: Request, res: Response, next: NextFunction) => {
+    if (req.cookies.token) {
+        req.headers.Authorization = `Bearer ${req.cookies.token}`;
+    }
+    next()
+}
+
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
+app.use(cookieToAuthorization)
 app.use(expressJwt({
     secret: SECRET,
     algorithms: ['HS256']
