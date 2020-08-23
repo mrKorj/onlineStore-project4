@@ -24,13 +24,14 @@ router.post('/', async (req, res) => {
     const token = jwt.sign({email, role: user.role}, SECRET)
 
     res.cookie('token', token, {
-        maxAge: 86400,
-        httpOnly: true,
+        maxAge: 86400000,
+        path: '/',
+        // httpOnly: true,
         // secure: true
     })
 
     const responseUser = {name: user.name, lastName: user.lastName, role: user.role, cart: user.cart}
-    res.send({token, user: responseUser})
+    res.send(responseUser)
 })
 
 export {router as loginRouter}

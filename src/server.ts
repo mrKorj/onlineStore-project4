@@ -17,7 +17,7 @@ const app = express()
 
 const cookieToAuthorization = (req: Request, res: Response, next: NextFunction) => {
     if (req.cookies.token) {
-        req.headers.Authorization = `Bearer ${req.cookies.token}`;
+        req.headers.authorization = `Bearer ${req.cookies.token}`;
     }
     next()
 }
