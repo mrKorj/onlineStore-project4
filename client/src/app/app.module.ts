@@ -18,6 +18,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CartComponent } from './cart/cart.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LoggedContentComponent } from './logged-content/logged-content.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     MainPageComponent,
     NavbarComponent,
     LoginFormComponent,
-    CartComponent
+    CartComponent,
+    LoggedContentComponent,
+    RegisterFormComponent
   ],
     imports: [
         BrowserModule,

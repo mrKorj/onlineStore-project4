@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         })
 
         const responseUser = {name: user.name, lastName: user.lastName, role: user.role, cart: user.cart}
-        res.send({token, user: responseUser})
+        res.send(responseUser)
     } catch (e) {
         res.status(403).send(e.message)
     }

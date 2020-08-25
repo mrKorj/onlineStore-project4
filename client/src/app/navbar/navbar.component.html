@@ -12,24 +12,25 @@
     <a href="#" class="brand-logo center my-logo">Foody Store</a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{0}}</a></li>
-      <li><span>Welcome {{'Guest'}}</span></li>
-      <li class=""><a href="#">About</a></li>
+      <li><span>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</span></li>
+      <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
+      <li class=""><a href="#" (click)="logOut()">Log Out</a></li>
     </ul>
     <!-- Mobile Cart   -->
     <ul class="right hide-on-large-only">
-      <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{0}}</a></li>
+      <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
     </ul>
   </div>
 </nav>
 
 <!--Sidenav menu-->
 <ul id="dropdown" class="sidenav" style="height: calc(100vh - 64px); margin-top: 64px">
-  <li><a>Welcome {{'Guest'}}</a></li>
+  <li><a>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</a></li>
   <li><a><i class="material-icons left">call</i>+972-3-1234567</a></li>
   <li class="divider"></li>
   <li><a href="mailto:support@foody.com"><i class="material-icons left">alternate_email</i>support@foody.com</a></li>
   <li class="divider"></li>
   <li class=""><a href="#">About</a></li>
+  <li class=""><a href="#" (click)="logOut()">Log Out</a></li>
 </ul>
 

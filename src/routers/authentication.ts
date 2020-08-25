@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 
     const responseUser = {name: user.name, lastName: user.lastName, role: user.role, cart: user.cart}
-    res.send({user: responseUser})
+    res.send(responseUser)
 })
 
 export {router as authenticationRouter}

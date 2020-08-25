@@ -1,4 +1,4 @@
-li {
+li:last-child {
   margin-right: 30px;
 }
 .my-logo {

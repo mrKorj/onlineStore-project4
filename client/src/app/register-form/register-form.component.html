@@ -1,0 +1,93 @@
+<div class="valign-wrapper container main">
+  <div class="row">
+    <div class="col s12 l6 ">
+      <div class="card large">
+        <div class="card-panel blue lighten-2">
+          <h5 class="center-align white-text">{{isExist ? 'almost finish...' : 'Registration'}}</h5>
+        </div>
+
+        <div class="card-content" *ngIf="!isExist">
+          <div class="row">
+            <form class="col s12" [formGroup]="registerForm" (ngSubmit)="registerPing()">
+              <div class="row center-align">
+                <div class="input-field inline col s12">
+                  <input id="id" type="number" class="validate" formControlName="id" min="9999999" max="999999999">
+                  <span class="helper-text" data-error="ID must be 9 digits" data-success=""></span>
+                  <label for="id">ID Number</label>
+                </div>
+                <div class="input-field inline col s12">
+                  <input id="email" type="email" class="validate" formControlName="email">
+                  <label for="email">Email</label>
+                  <span class="helper-text" data-error="incorrect email" data-success=""></span>
+                </div>
+                <div class="input-field inline col s6">
+                  <input id="password" type="password" formControlName="password">
+                  <label for="password">Password</label>
+                </div>
+                <div class="input-field inline col s6">
+                  <input id="password2" type="password" formControlName="password2">
+                  <label for="password2">confirm Password</label>
+                  <span class="helper-text red-text"
+                        *ngIf="registerForm.errors?.mismatch && (registerForm.get('password2').dirty || registerForm.get('password2').touched)">
+                    Passwords don't match.
+                  </span>
+                </div>
+                <strong class="red-text">{{message}}</strong>
+                <div class="center-align col s12 card-action">
+                  <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!registerForm.valid">Sign
+                    up
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!--    form 2-->
+        <div class="card-content" *ngIf="isExist">
+          <div class="row">
+            <form class="col s12" [formGroup]="registerForm2" (ngSubmit)="register()">
+              <div class="row center-align">
+                <div class="input-field inline col s12">
+                  <input id="name" type="text" class="validate" formControlName="name">
+                  <label for="name">Name</label>
+                </div>
+                <div class="input-field inline col s12">
+                  <input id="lastName" type="text" class="validate" formControlName="lastName">
+                  <label for="lastName">Last Name</label>
+                </div>
+                <div class="input-field inline col s6">
+                  <input id="city" type="text" class="validate" formControlName="city">
+                  <label for="city">City</label>
+                </div>
+                <div class="input-field inline col s6">
+                  <input id="street" type="text" class="validate" formControlName="street">
+                  <label for="street">Street</label>
+                </div>
+                <div class="center-align col s12">
+                  <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!registerForm.valid">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col s12 l6">
+      <div class="card large section center-align">
+        <h1>Happy shopping in our store!</h1>
+        <p class="card-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur corporis dicta
+          enim id, illum ipsum
+          laboriosam laborum nam nemo sint sit suscipit voluptas. Neque.</p>
+        <strong class="pink-text lighten-2">satisfied customers in our store: {{42}}</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

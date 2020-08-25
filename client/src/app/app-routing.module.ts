@@ -1,7 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {RegisterFormComponent} from './register-form/register-form.component';
+import {MainPageComponent} from './main-page/main-page.component';
+import {PrivateRoute} from './private.route';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: MainPageComponent},
+  {path: 'register', component: RegisterFormComponent},
+  {path: 'main', component: MainPageComponent, canActivate: [PrivateRoute]},
+  {path: '**', redirectTo: '/main'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

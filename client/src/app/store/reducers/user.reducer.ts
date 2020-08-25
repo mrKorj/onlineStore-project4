@@ -3,10 +3,10 @@ import {IProduct} from './product.reducer';
 import {
   LoginFail,
   LoginStart,
-  LoginSuccess,
+  LoginSuccess, RegisterFail, RegisterStart, RegisterSuccess,
   UserAuthentication,
   UserAuthenticationFail,
-  UserAuthenticationSuccess
+  UserAuthenticationSuccess, UserLogout
 } from '../user/user.actions';
 
 export interface IUserState {
@@ -28,12 +28,18 @@ export const initialState: IUserState = {
 
 const reducer = createReducer(initialState,
   on(UserAuthentication, state => ({...state})),
-  on(UserAuthenticationSuccess, state => ({...state, logged: true})),
+  on(UserAuthenticationSuccess, (state, {name, lastName, cart, role}) => ({...state, logged: true, name, lastName, role, cart})),
   on(UserAuthenticationFail, state => ({...state})),
 
   on(LoginStart, state => ({...state})),
   on(LoginSuccess, (state, {name, lastName, cart, role}) => ({...state, logged: true, name, lastName, role, cart})),
   on(LoginFail, state => ({...state, logged: false})),
+
+  on(RegisterStart, state => ({...state})),
+  on(RegisterSuccess, (state, {name, lastName, cart, role}) => ({...state, logged: true, name, lastName, role, cart})),
+  on(RegisterFail, state => ({...state, logged: false})),
+
+  on(UserLogout, () => initialState)
 );
 
 export const userReducer = (state: IUserState, action: Action) => {

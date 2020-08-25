@@ -22,7 +22,6 @@ export class LoginFormComponent implements OnInit {
   login(): void {
     const {email, password} = this.loginForm.value;
     this.userStore.dispatch(LoginStart({email, password}));
-    this.loginForm.reset();
   }
 
   ngOnInit(): void {

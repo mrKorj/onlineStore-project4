@@ -22,7 +22,7 @@ const cookieToAuthorization = (req: Request, res: Response, next: NextFunction) 
     next()
 }
 
-app.use(cors())
+app.use(cors({origin: ["http://localhost:4200"], credentials: true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cookieToAuthorization)
