@@ -1,0 +1,24 @@
+a {
+  text-decoration: underline;
+}
+
+.input-field {
+  margin-bottom: 0;
+}
+
+.row {
+  margin-bottom: 0;
+}
+
+.input-field input[type]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+  color: #d81b60 !important;
+}
+
+.input-field input[type]:focus, .materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #d81b60 !important;
+  box-shadow: 0 1px 0 0 #d81b60 !important;
+}
+
+.input-field .prefix.active {
+  color: #d81b60 !important;
+}

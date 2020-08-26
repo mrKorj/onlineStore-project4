@@ -57,15 +57,17 @@
                   <label for="lastName">Last Name</label>
                 </div>
                 <div class="input-field inline col s6">
-                  <input id="city" type="text" class="validate" formControlName="city">
-                  <label for="city">City</label>
+                  <select class="browser-default" formControlName="city" (change)="changeCity($event)">
+                    <option value="" disabled selected>Choose your city</option>
+                    <option *ngFor="let city of allCity" [value]="city">{{city}}</option>
+                  </select>
                 </div>
                 <div class="input-field inline col s6">
                   <input id="street" type="text" class="validate" formControlName="street">
                   <label for="street">Street</label>
                 </div>
                 <div class="center-align col s12">
-                  <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!registerForm.valid">
+                  <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!registerForm2.valid">
                     Submit
                   </button>
                 </div>

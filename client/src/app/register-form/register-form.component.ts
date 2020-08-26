@@ -38,6 +38,7 @@ export class RegisterFormComponent implements OnInit {
     city: null,
     street: null
   };
+  allCity: any = ['Jerusalem', 'Tel Aviv', 'Rishon Le Zion', 'Petah Tikva', 'Ashdod', 'Rehovot', 'Haifa', 'Carmiel', 'Eilat'];
 
 
   constructor(private fb: FormBuilder, private userStore: Store<IState>, private userService: UserService) {
@@ -64,6 +65,14 @@ export class RegisterFormComponent implements OnInit {
     return frm.get('password').value === frm.get('password2').value ? null : {mismatch: true};
   }
 
+  changeCity(e): void {
+    this.city.setValue(e.target.value);
+  }
+
+  get city(): any {
+    return this.registerForm2.get('city');
+  }
+
   registerPing(): void {
     const {id, email, password} = this.registerForm.value;
     this.userService.registerPing(id, email)
@@ -73,7 +82,11 @@ export class RegisterFormComponent implements OnInit {
           this.registerData = {...this.registerData, idNumber: id, email, password};
           return;
         }
-        M.toast({html: `<span class="flow-text">${response.message}</span>`, displayLength: 8000, classes: 'rounded pink darken-2'});
+        M.toast({
+          html: `<span class="flow-text">${response.message}</span>`,
+          displayLength: 8000,
+          classes: 'rounded pink darken-2'
+        });
         this.message = response.message;
       });
   }

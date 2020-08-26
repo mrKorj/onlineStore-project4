@@ -21,10 +21,10 @@
           <span style="font-size: 2rem; font-weight: bold" class="card-title">Our Store...</span>
         </div>
         <div class="card-content">
-          <p>Available products in our store - number</p>
+          <p>Available products in our store - <strong class="pink-text lighten-2">{{totalProducts}}</strong></p>
         </div>
         <div class="card-content">
-          <p>Number of orders submitted in our store.</p>
+          <p>Total orders submitted in our store - <strong class="pink-text lighten-2">{{totalOrders}}</strong></p>
         </div>
         <div class="card-action pink-text text-lighten-1">
           <p>Welcome {{(user$ | async).name || 'Guest'}}</p>

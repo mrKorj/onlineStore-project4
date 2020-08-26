@@ -9,6 +9,7 @@ export interface IOrderState {
   city: string;
   street: string;
   shippingDate: Date;
+  orderDate?: Date;
   creditCard: number;
   totalPrice: number;
   items: IProduct[];

@@ -29,7 +29,7 @@ app.use(cookieToAuthorization)
 app.use(expressJwt({
     secret: SECRET,
     algorithms: ['HS256']
-}).unless({path: ['/api/register', '/api/register/ping', '/api/login']}))
+}).unless({path: ['/api/register', '/api/register/ping', '/api/login', '/api/product/total', '/api/order/total_orders']}))
 
 
 app.use('/api/register', registrationRouter)

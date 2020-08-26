@@ -7,6 +7,7 @@ const router = Router()
 let invoiceNumber = 1000
 let invoice = ''
 
+// -------- add order
 router.post('/', async (req, res) => {
     const {city, street, shippingDate, creditCard} = req.body
     const {email, role} = (req as any).user // from express-jwt middleware
@@ -56,6 +57,20 @@ router.get('/invoice', (req, res) => {
     res.attachment(`invoice${invoiceNumber}.txt`)
     res.type('txt')
     res.send(invoice)
+})
+
+
+// ----- get num of all orders
+router.get('/total_orders', async (req, res) => {
+    const orders = await Order.find({}).exec()
+    res.send({total: orders.length})
+})
+
+// ---- get order by user id
+router.get('/user_orders', async (req, res) => {
+    const {email} = (req as any).user
+    const orders = await Order.find({userId: email}).exec()
+    res.send(orders)
 })
 
 export {router as orderRouter}

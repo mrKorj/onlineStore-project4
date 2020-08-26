@@ -27,7 +27,12 @@ export class UserEffects {
   userAuthentication$ = createEffect(() => this.actions$.pipe(
     ofType(UserAuthentication),
     mergeMap(() => this.userService.userAuthentication().pipe(
-      map(user => UserAuthenticationSuccess({...user})),
+      map(user => {
+        user.role === 'admin'
+          ? this.router.navigateByUrl('/admin')
+          : this.router.navigateByUrl('/main');
+        return UserAuthenticationSuccess({...user});
+      }),
       catchError(() => of(UserAuthenticationFail()))
     ))
   ));
@@ -36,11 +41,17 @@ export class UserEffects {
     ofType(LoginStart),
     exhaustMap(action => this.userService.login(action.email, action.password).pipe(
       map((user) => {
-        this.router.navigateByUrl('/main');
+        user.role === 'admin'
+          ? this.router.navigateByUrl('/admin')
+          : this.router.navigateByUrl('/main');
         return LoginSuccess({...user});
       }),
       catchError(({error}) => {
-        M.toast({html: `<span class="flow-text">${error}</span>`, displayLength: 9000, classes: 'rounded pink darken-2'});
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 9000,
+          classes: 'rounded pink darken-2'
+        });
         return of(LoginFail());
       })
     ))
@@ -53,7 +64,14 @@ export class UserEffects {
         this.router.navigateByUrl('/main');
         return RegisterSuccess({...user});
       }),
-      catchError(() => of(RegisterFail()))
+      catchError(({error}) => {
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 9000,
+          classes: 'rounded pink darken-2'
+        });
+        return of(RegisterFail());
+      })
     ))
   ));
 

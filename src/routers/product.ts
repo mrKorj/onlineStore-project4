@@ -3,6 +3,16 @@ import {Product} from '../collections/product'
 
 const router = Router()
 
+// ----- get number of all products-----
+router.get('/total', async (req, res) => {
+    try {
+        const products = await Product.find({}).exec()
+        res.send({total: products.length})
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+
+})
 
 // ------ get product by category
 router.get('/:category', async (req, res) => {

@@ -1,0 +1,10 @@
+.products {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.prod {
+  max-width: 250px;
+  max-height: 350px;
+}
