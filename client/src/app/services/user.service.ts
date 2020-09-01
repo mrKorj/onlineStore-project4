@@ -20,6 +20,10 @@ export class UserService {
       {email, password}, {withCredentials: true});
   }
 
+  logout(): any {
+    this.http.get('http://localhost:4000/api/login', {withCredentials: true}).subscribe();
+  }
+
   registerPing(idNumber: number, email: string): Observable<any> {
     return this.http.post<any>('http://localhost:4000/api/register/ping', {idNumber, email});
   }

@@ -17,7 +17,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CartComponent } from './cart/cart.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoggedContentComponent } from './logged-content/logged-content.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -45,7 +45,8 @@ import { ProductNavbarComponent } from './product-navbar/product-navbar.componen
         }),
         StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production, name: 'online Store'}),
         EffectsModule.forRoot([UserEffects, ProductEffects, OrderEffects]),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

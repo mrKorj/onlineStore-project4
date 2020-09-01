@@ -1,10 +1,12 @@
-import {Action, createReducer} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
+import {loadProducts, loadProductsFail, loadProductsSuccess} from '../product/product.actions';
 
 export interface IProduct {
   name: string;
   price: number;
   category: string;
   picUrl: string;
+  count?: number;
 }
 
 export interface IProductState {
@@ -20,6 +22,9 @@ export const initialState: IProductState = {
 
 const reducer = createReducer(
   initialState,
+  on(loadProducts, state => ({...state, productLoading: true})),
+  on(loadProductsSuccess, (state, payload) => ({...state, productLoading: false, products: payload.products})),
+  on(loadProductsFail, state => ({...state, productLoading: false}))
 );
 
 export const productReducer = (state: IProductState, action: Action) => {

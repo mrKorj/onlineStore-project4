@@ -1,20 +1,27 @@
 <div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix blue-text lighten-2">search</i>
-    <input id="search" type="search">
-    <label for="search" class="blue-text lighten-2">Search product</label>
-  </div>
+  <form (ngSubmit)="searchHandler()">
+    <div class="input-field col s12">
+      <i class="material-icons prefix blue-text lighten-2">search</i>
+      <input id="search" type="search" [(ngModel)]="searchValue" name="searchValue">
+      <label for="search" class="blue-text lighten-2">Search product</label>
+    </div>
+  </form>
 </div>
 
 <nav class="blue lighten-2">
   <div class="nav-wrapper">
     <a href="#" data-target="mobile-product-category" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="left hide-on-med-and-down">
-      <li class="active"><a href="">Milk & Eggs</a></li>
-      <li><a href="">Vegetables & Fruits</a></li>
-      <li><a href="">Meat & Fish</a></li>
-      <li><a href="">Wine & Drink</a></li>
-      <li><a href="">Sweets & Kandy</a></li>
+      <li [ngClass]="{'active': link === 'Milk & Eggs'}" (click)="categoryHandler('Milk & Eggs')"><a>Milk & Eggs</a>
+      </li>
+      <li [ngClass]="{'active': link === 'Vegetables & Fruits'}" (click)="categoryHandler('Vegetables & Fruits')"><a>Vegetables
+        & Fruits</a></li>
+      <li [ngClass]="{'active': link === 'Meat & Fish'}" (click)="categoryHandler('Meat & Fish')"><a>Meat & Fish</a>
+      </li>
+      <li [ngClass]="{'active': link === 'Wine & Drink'}" (click)="categoryHandler('Wine & Drink')"><a>Wine & Drink</a>
+      </li>
+      <li [ngClass]="{'active': link === 'Sweets & Kandy'}" (click)="categoryHandler('Sweets & Kandy')"><a>Sweets &
+        Kandy</a></li>
       <li>
         <button class="btn-small ml-3">add product</button>
       </li>
@@ -23,11 +30,11 @@
 </nav>
 
 <ul class="sidenav" id="mobile-product-category" style="height: calc(100vh - 64px); margin-top: 64px">
-  <li><a href="">Milk & Eggs</a></li>
-  <li><a href="">Vegetables & Fruits</a></li>
-  <li><a href="">Meat & Fish</a></li>
-  <li><a href="">Wine & Drink</a></li>
-  <li><a href="">Sweets & Kandy</a></li>
+  <li (click)="categoryHandler('Milk & Eggs')"><a class="sidenav-close">Milk & Eggs</a></li>
+  <li (click)="categoryHandler('Vegetables & Fruits')"><a class="sidenav-close">Vegetables & Fruits</a></li>
+  <li (click)="categoryHandler('Meat & Fish')"><a class="sidenav-close">Meat & Fish</a></li>
+  <li (click)="categoryHandler('Wine & Drink')"><a class="sidenav-close">Wine & Drink</a></li>
+  <li (click)="categoryHandler('Sweets & Kandy')"><a class="sidenav-close">Sweets & Kandy</a></li>
   <li>
     <button class="btn-small ml-3">add product</button>
   </li>

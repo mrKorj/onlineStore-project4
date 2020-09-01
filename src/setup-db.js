@@ -7,7 +7,7 @@ db.users.insertOne([
 ]);
 
 db.products.insertMany([
-    {name: 'Milk 1L', category: 'milk & eggs', price: 5.90, picUrl: 'https://storage.googleapis.com/sp-public/product-images/global/8425/933922/large.jpg'},
+    {name: 'Milk 1L', category: 'milk & eggs', price: 5.90, picUrl: 'https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/FZQ30_L_P_57477_1.png'},
     {name: 'Nesquik Chocolate Milk', category: 'milk & eggs', price: 10.90, picUrl: 'https://www.dollargeneral.com/media/catalog/product/cache/6e5ff7de2a46bb5e4325e62839d28016/0/0/00028000772123_cf___jpeg_3.jpg'},
     {name: 'Yogurt Dannon', category: 'milk & eggs', price: 3.90, picUrl: 'https://www.dannon.com/wp-content/themes/ultrasimpleRes/slider/slider2.jpg'},
     {name: 'Cucumber 1kg', category: 'vegetables & fruits', price: 3.50, picUrl: 'https://ipm.missouri.edu/MEG/2014/3/Cucumber-A-Brief-History/Cucumber_SupremoHybrid1-Burpee.jpg'},
@@ -19,6 +19,9 @@ db.products.insertMany([
     {name: 'Coca Cola 2L', category: 'wine & drink', price: 10.90, picUrl: 'https://www.samos-deli.com/wp-content/uploads/2016/03/COCACOLA-PET2L.jpeg'},
     {name: 'White Wine', category: 'wine & drink', price: 39.80, picUrl: 'https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2018/07/Chardonnays.jpg'},
     {name: 'Red Wine', category: 'wine & drink', price: 37.90, picUrl: 'https://www.wine.com/product/images/w_767,c_fit,q_auto:good,fl_progressive/nsxzznnyoglp7fzunx3i.jpg'},
+    {name: 'Dark Chocolate', category: 'sweets & kandy', price: 7.90, picUrl: 'https://5.imimg.com/data5/XU/CU/PX/SELLER-6782766/amul-dark-chocolate-500x500.jpg'},
+    {name: 'Milk Chocolate', category: 'sweets & kandy', price: 6.90, picUrl: 'https://cdn.shopify.com/s/files/1/0209/2496/products/Solid-Milk_grande.png?v=1535030690'},
+    {name: 'Fruit Candy', category: 'sweets & kandy', price: 19.90, picUrl: 'https://sc01.alicdn.com/kf/H330efda8ec5541f6bcbcd03214cdd451h.jpg'},
 ]);
 
 db.products.createIndex({name: 'text'});

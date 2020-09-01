@@ -26,12 +26,22 @@ router.post('/', async (req, res) => {
     res.cookie('token', token, {
         maxAge: 86400000,
         path: '/',
-        // httpOnly: true,
+        httpOnly: true,
         // secure: true
     })
 
     const responseUser = {name: user.name, lastName: user.lastName, role: user.role, cart: user.cart}
     res.send(responseUser)
+})
+
+// ---------- logout
+router.get('/', (req, res) => {
+    res.cookie('token', '', {
+        path: '/',
+        httpOnly: true,
+        // secure: true
+    })
+    res.send({message: 'logout'})
 })
 
 export {router as loginRouter}

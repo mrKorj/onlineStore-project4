@@ -13,7 +13,7 @@
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><span>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</span></li>
-      <li><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
+      <li *ngIf="(user$ | async).role !== 'admin'"><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
       <li><a routerLink="/" (click)="logOut()">Log Out</a></li>
     </ul>
     <!-- Mobile Cart   -->

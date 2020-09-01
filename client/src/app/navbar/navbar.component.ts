@@ -6,6 +6,7 @@ import {User} from '../store/user/user.selectors';
 import {Observable} from 'rxjs';
 import {IState} from '../store/reducers';
 import {UserLogout} from '../store/user/user.actions';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ import {UserLogout} from '../store/user/user.actions';
 export class NavbarComponent implements OnInit {
   user$: Observable<IUserState>;
 
-  constructor(private userStore: Store<IState>) {
+  constructor(private userStore: Store<IState>, private userService: UserService) {
     this.user$ = userStore.select(User);
   }
 
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
   logOut(): void {
     this.userStore.dispatch(UserLogout());
+    this.userService.logout();
   }
 
 }

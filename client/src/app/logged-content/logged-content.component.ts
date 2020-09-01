@@ -16,15 +16,16 @@ export class LoggedContentComponent implements OnInit {
 
   user$: Observable<IUserState>;
   totalPrice = 0;
-  userOrders: IOrderState[];
+  userOrders: IOrderState;
 
   constructor(private userStore: Store<IState>, private orderService: OrderService) {
     this.user$ = userStore.select(User);
   }
 
+
   ngOnInit(): void {
-    this.user$.subscribe(user => user.cart.map(item => this.totalPrice + item.price));
-    this.orderService.getUserOrders().subscribe(orders => this.userOrders = orders);
+    this.orderService.getUserOrders().subscribe(orders => this.userOrders = orders[orders.length - 1]);
+    this.user$.subscribe(user => user.cart.forEach(item => this.totalPrice += item.price * item.count));
   }
 
 }

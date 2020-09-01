@@ -4,21 +4,33 @@
   </div>
 
   <div class="card-content">
-    <div class="row">
-      <div class="row center-align">
+    <div class="row center-align">
+      <div>
         <p>Hello {{(user$ | async).name}}</p>
       </div>
-      <div class="row center-align" *ngIf="(user$ | async).cart.length === 0 && (user$ | async).role !== 'admin'">
-        <p>Your last order {{userOrders | json}}</p>
-        <button class="btn waves-effect pink darken-2">Start shopping</button>
+      <div class="" *ngIf="(user$ | async).cart.length === 0 && (user$ | async).role !== 'admin'">
+        <div class="card-content" *ngIf="userOrders">
+          <p>Date of your last order:  {{userOrders.orderDate | date: 'short'}}</p>
+          <p>Total price:  {{userOrders.totalPrice}} $</p>
+        </div>
+        <p *ngIf="!userOrders">Let's start your first shopping.</p>
+        <div class="card-content">
+          <button class="btn waves-effect pink darken-2">Start shopping</button>
+        </div>
       </div>
-      <div class="row center-align" *ngIf="(user$ | async).cart.length > 0">
-        <p>You have open cart: {{(user$ | async).cart.length}} items.</p>
+      <div class="card-content " *ngIf="(user$ | async).cart.length > 0">
+        <p>You have open cart with: {{(user$ | async).cart.length}} items.</p>
         <p>Total price: {{totalPrice}} $.</p>
-        <button class="btn waves-effect pink darken-2">Resume shopping</button>
-        <button class="btn waves-effect pink darken-2">Checkout</button>
+
+        <div class="card-content">
+          <button class="btn waves-effect pink darken-2">Resume shopping</button>
+        </div>
+        <div class="card-content">
+          <button class="btn waves-effect pink">Checkout</button>
+        </div>
       </div>
-      <div class="row center-align" *ngIf="(user$ | async).role === 'admin'">
+
+      <div *ngIf="(user$ | async).role === 'admin'">
         <a routerLink="/admin" class="btn waves-effect pink darken-2">Manage products</a>
       </div>
     </div>

@@ -1,28 +1,40 @@
-<div class="container">
+<div class="container" style="min-height: calc(100vh - 65px)">
 
   <app-product-navbar></app-product-navbar>
 
-  <div class="products">
-    <div class="prod" *ngFor="let i of card">
+  <div class="products" *ngIf="(products$ | async).length; else noProducts">
+    <div class="prod" *ngFor="let product of (products$ | async)">
       <!--card-->
       <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://images-na.ssl-images-amazon.com/images/I/61H3p9Pmm1L.jpg">
+          <img class="activator" src="{{product.picUrl}}">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{'chocolate'}}{{i}}<i
+          <span class="card-title activator grey-text text-darken-4">{{product.name}}<i
             class="right pink-text lighten-2 material-icons">add_circle</i></span>
-          <p>price: {{10.3}}{{i}}</p>
+          <p>price: {{product.price}} $</p>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{'Chocolate'}}<i
+          <span class="card-title grey-text text-darken-4">{{product.name}}<i
             class="material-icons right">close</i></span>
-          <p>price: {{10.3}}</p>
-          <p><button class="btn-small blue lighten-2 waves-effect waves-light">edit product</button></p>
-          <p><button class="btn-small red lighten-2 waves-effect waves-light">delete product</button></p>
+          <p>price: {{product.price}} $</p>
+          <p>
+            <button class="btn-small blue lighten-2 waves-effect waves-light">edit product</button>
+          </p>
+          <p>
+            <button class="btn-small red lighten-2 waves-effect waves-light">delete product</button>
+          </p>
         </div>
       </div>
 
     </div>
   </div>
 </div>
+
+<ng-template #noProducts>
+  <div class="products">
+    <div class="card-panel red lighten-4">
+      sorry, No items found...
+    </div>
+  </div>
+</ng-template>
