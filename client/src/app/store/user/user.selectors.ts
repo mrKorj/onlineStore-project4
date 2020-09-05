@@ -6,3 +6,7 @@ export const User = createSelector(
   user => user
 );
 
+export const UserLoading = createSelector(
+  (state: IState) => state.user,
+  user => user.userLoading
+);

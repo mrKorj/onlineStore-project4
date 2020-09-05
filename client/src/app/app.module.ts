@@ -22,6 +22,8 @@ import { LoggedContentComponent } from './logged-content/logged-content.componen
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ProductNavbarComponent } from './product-navbar/product-navbar.component';
+import { LoaderComponent } from './loader/loader.component';
+import { AddProductModalComponent } from './add-product-modal/add-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ProductNavbarComponent } from './product-navbar/product-navbar.componen
     LoggedContentComponent,
     RegisterFormComponent,
     AdminPageComponent,
-    ProductNavbarComponent
+    ProductNavbarComponent,
+    LoaderComponent,
+    AddProductModalComponent
   ],
     imports: [
         BrowserModule,

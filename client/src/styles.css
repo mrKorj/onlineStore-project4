@@ -37,6 +37,9 @@
     bottom: auto !important;
     left: 40%;
   }
+  .modal {
+    width: 30% !important;
+  }
 }
 
 .m2 {

@@ -13,6 +13,7 @@ export interface IOrderState {
   creditCard: number;
   totalPrice: number;
   items: IProduct[];
+  orderLoading: boolean;
 }
 
 export const initialState: IOrderState = {
@@ -22,7 +23,8 @@ export const initialState: IOrderState = {
   shippingDate: null,
   creditCard: null,
   totalPrice: null,
-  items: []
+  items: [],
+  orderLoading: false
 };
 
 

@@ -31,6 +31,7 @@ export class ProductNavbarComponent implements OnInit {
 
   ngOnInit(): void {
     M.Sidenav.init(document.querySelector('#mobile-product-category'), {edge: 'left'});
+    M.Modal.init(document.querySelectorAll('.modal'), {dismissible: false});
     this.productStore.dispatch(loadProducts({category: 'Milk & Eggs'}));
   }
 

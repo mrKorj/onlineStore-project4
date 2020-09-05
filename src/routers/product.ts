@@ -18,7 +18,7 @@ router.get('/total', async (req, res) => {
 router.get('/:category', async (req, res) => {
     const {category} = req.params
 
-    const products = await Product.find({category: (category as string)}).exec()
+    const products = await Product.find({category: { "$regex" : category , "$options" : "i"}}).exec()
 
     res.send(products)
 })
@@ -51,7 +51,7 @@ router.post('/add', async (req, res) => {
 })
 
 // --------delete product
-router.delete('/delete', async (req, res) => {
+router.post('/delete', async (req, res) => {
     const {productId} = req.body
     const {role} = (req as any).user // from express-jwt middleware
 
@@ -61,7 +61,11 @@ router.delete('/delete', async (req, res) => {
 
     try {
         const {deletedCount} = await Product.deleteOne({_id: productId}).exec()
-        res.send({deletedCount})
+
+        if (deletedCount) {
+            return res.send({message: 'Product deleted successfully'})
+        }
+        res.send({message: 'Product not find'})
     } catch (e) {
         res.status(500).send(e.message)
     }

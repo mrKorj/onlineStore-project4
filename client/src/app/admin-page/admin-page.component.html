@@ -2,7 +2,7 @@
 
   <app-product-navbar></app-product-navbar>
 
-  <div class="products" *ngIf="(products$ | async).length; else noProducts">
+  <div class="products" *ngIf="(products$ | async).length || (productLoading | async); else noProducts">
     <div class="prod" *ngFor="let product of (products$ | async)">
       <!--card-->
       <div class="card">
@@ -22,7 +22,7 @@
             <button class="btn-small blue lighten-2 waves-effect waves-light">edit product</button>
           </p>
           <p>
-            <button class="btn-small red lighten-2 waves-effect waves-light">delete product</button>
+            <button class="btn-small red lighten-2 waves-effect waves-light" (click)="deleteHandler(product._id)">delete product</button>
           </p>
         </div>
       </div>

@@ -1,0 +1,32 @@
+<div class="modal-content">
+  <h5>Add Product Form</h5>
+  <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+    <div class="row center-align">
+      <div class="input-field inline col s12">
+        <select class="browser-default" formControlName="category" (change)="changeCategory($event)">
+          <option value="" disabled selected>Choose Category</option>
+          <option *ngFor="let category of allCategories" [value]="category">{{category}}</option>
+        </select>
+      </div>
+      <div class="input-field inline col s12">
+        <input id="name" type="text" class="validate" formControlName="name">
+        <label for="name">Name</label>
+      </div>
+      <div class="input-field inline col s12">
+        <input id="lastName" type="number" class="validate" formControlName="price" step="any">
+        <label for="lastName">Price</label>
+      </div>
+      <div class="input-field inline col s12">
+        <input id="street" type="text" class="validate" formControlName="picUrl">
+        <label for="street">Picture URL</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-close waves-effect waves-green btn-small" [disabled]="!addProductForm.valid">Save</button>
+      <a class="modal-close waves-effect btn-small red lighten-2" style="margin-left: 1rem">Close</a>
+    </div>
+  </form>
+</div>
+
+
+

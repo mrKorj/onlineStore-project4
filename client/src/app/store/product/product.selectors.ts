@@ -6,4 +6,8 @@ export const Products = createSelector(
   productState => productState.products
 );
 
+export const ProductLoading = createSelector(
+  (state: IState) => state.products,
+  products => products.productLoading
+);
 

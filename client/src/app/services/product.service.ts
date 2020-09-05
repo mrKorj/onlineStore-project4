@@ -22,4 +22,12 @@ export class ProductService {
   searchProduct(value: string): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`http://localhost:4000/api/product/search/${value.toLowerCase()}`, {withCredentials: true});
   }
+
+  addProduct(formVal: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>('http://localhost:4000/api/product/add', formVal, {withCredentials: true});
+  }
+
+  deleteProduct(productId: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>('http://localhost:4000/api/product/delete', {productId}, {withCredentials: true});
+  }
 }
