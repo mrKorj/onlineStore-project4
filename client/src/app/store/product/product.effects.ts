@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {act, Actions, createEffect, ofType} from '@ngrx/effects';
 import {ProductService} from '../../services/product.service';
 import {
   addProduct,
-  addProductsFail, addProductSuccess, deleteProduct, deleteProductSuccess,
+  addProductFail,
+  addProductSuccess,
+  deleteProduct,
+  deleteProductSuccess, editProduct, editProductFail, editProductSuccess,
   loadProducts,
   loadProductsFail,
   loadProductsSuccess,
@@ -12,7 +15,6 @@ import {
 import {catchError, exhaustMap, map, mergeMap} from 'rxjs/operators';
 import * as M from 'materialize-css';
 import {of} from 'rxjs';
-import {LoginFail} from '../user/user.actions';
 
 
 @Injectable()
@@ -69,7 +71,7 @@ export class ProductEffects {
           displayLength: 9000,
           classes: 'rounded pink darken-2'
         });
-        return of(addProductsFail());
+        return of(addProductFail());
       })
     ))
   ));
@@ -91,7 +93,29 @@ export class ProductEffects {
           displayLength: 9000,
           classes: 'rounded pink darken-2'
         });
-        return of(addProductsFail());
+        return of(addProductFail());
+      })
+    ))
+  ));
+
+  editProduct$ = createEffect(() => this.actions$.pipe(
+    ofType(editProduct),
+    mergeMap(action => this.productService.editProduct({...action}).pipe(
+      map((product) => {
+        M.toast({
+          html: `<span class="flow-text">Product updated successfully.</span>`,
+          displayLength: 6000,
+          classes: 'rounded green'
+        });
+        return editProductSuccess({product});
+      }),
+      catchError(({error}) => {
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 9000,
+          classes: 'rounded pink darken-2'
+        });
+        return of(editProductFail());
       })
     ))
   ));

@@ -1,6 +1,13 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import {
-  addProduct, addProductsFail, addProductSuccess, deleteProduct, deleteProductsFail, deleteProductSuccess,
+  addProduct,
+  addProductFail,
+  addProductSuccess,
+  deleteProduct,
+  deleteProductFail,
+  deleteProductSuccess,
+  editProduct, editProductFail,
+  editProductSuccess,
   loadProducts,
   loadProductsFail,
   loadProductsSuccess,
@@ -36,12 +43,17 @@ const reducer = createReducer(
   on(searchProduct, state => ({...state, productLoading: true})),
 
   on(addProduct, state => ({...state, productLoading: true})),
-  on(addProductSuccess, (state, payload) => ({
-    ...state,
-    products: [...state.products, payload.product],
-    productLoading: false
-  })),
-  on(addProductsFail, state => ({...state, productLoading: false})),
+  on(addProductSuccess, (state, payload) => {
+    if (state.products[0].category === payload.product.category) {
+      return {
+        ...state,
+        products: [...state.products, payload.product],
+        productLoading: false
+      };
+    }
+    return {...state, productLoading: false};
+  }),
+  on(addProductFail, state => ({...state, productLoading: false})),
 
   on(deleteProduct, state => ({...state, productLoading: true})),
   on(deleteProductSuccess, (state, payload) => ({
@@ -49,7 +61,20 @@ const reducer = createReducer(
     productLoading: false,
     products: state.products.filter(p => p._id !== payload.productId)
   })),
-  on(deleteProductsFail, state => ({...state, productLoading: false})),
+  on(deleteProductFail, state => ({...state, productLoading: false})),
+
+  on(editProduct, state => ({...state, productLoading: true})),
+  on(editProductSuccess, (state, payload) => ({
+    ...state,
+    productLoading: false,
+    products: state.products.map(product => {
+      if (product._id === payload.product._id) {
+        product = payload.product;
+      }
+      return product;
+    })
+  })),
+  on(editProductFail, state => ({...state, productLoading: false}))
 );
 
 export const productReducer = (state: IProductState, action: Action) => {

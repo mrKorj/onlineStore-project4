@@ -19,7 +19,8 @@
             class="material-icons right">close</i></span>
           <p>price: {{product.price}} $</p>
           <p>
-            <button class="btn-small blue lighten-2 waves-effect waves-light">edit product</button>
+            <button class="btn-small blue lighten-2 waves-effect waves-light modal-trigger"
+                    data-target="editProductModal" (click)="editModal(product._id)">edit product</button>
           </p>
           <p>
             <button class="btn-small red lighten-2 waves-effect waves-light" (click)="deleteHandler(product._id)">delete product</button>
@@ -28,6 +29,35 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!-- Edit Modal-->
+<div id="editProductModal" class="modal">
+  <div class="modal-content">
+    <h5>Edit Product Form</h5>
+    <form [formGroup]="editProductForm" (ngSubmit)="editProduct()">
+      <div class="row center-align">
+        <div class="input-field inline col s12">
+          <span>Name</span>
+          <input type="text" class="validate" formControlName="name">
+        </div>
+        <div class="input-field inline col s12">
+          <span>Price</span>
+          <input type="number" class="validate" formControlName="price" step="any">
+        </div>
+        <div class="input-field inline col s12">
+          <span>Picture URL</span>
+          <input type="text" class="validate" formControlName="picUrl">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="modal-close waves-effect waves-green btn-small"
+                [disabled]="!editProductForm.valid">Save
+        </button>
+        <a class="modal-close waves-effect btn-small red lighten-2" style="margin-left: 1rem">Close</a>
+      </div>
+    </form>
   </div>
 </div>
 

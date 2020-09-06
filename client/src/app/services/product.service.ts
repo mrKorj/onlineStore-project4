@@ -30,4 +30,8 @@ export class ProductService {
   deleteProduct(productId: string): Observable<{ message: string }> {
     return this.http.post<{ message: string }>('http://localhost:4000/api/product/delete', {productId}, {withCredentials: true});
   }
+
+  editProduct(formVal: Omit<IProduct, 'category'>): Observable<IProduct> {
+    return this.http.post<IProduct>('http://localhost:4000/api/product/edit', formVal, {withCredentials: true});
+  }
 }

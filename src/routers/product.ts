@@ -71,9 +71,9 @@ router.post('/delete', async (req, res) => {
     }
 })
 
-//----- update product
+//----- update-edit product
 router.post('/edit', async (req, res) => {
-    const {name, category, price, picUrl, productId} = req.body
+    const {name, price, picUrl, productId} = req.body
     const {role} = (req as any).user // from express-jwt middleware
 
     if (role !== 'admin') {
@@ -81,7 +81,7 @@ router.post('/edit', async (req, res) => {
     }
 
     try {
-        const product = await Product.findOneAndUpdate({_id: productId}, {name, category, price, picUrl}, {new: true}).exec()
+        const product = await Product.findOneAndUpdate({_id: productId}, {name, price, picUrl}, {new: true}).exec()
         res.send(product)
     } catch (e) {
         res.status(500).send(e.message)

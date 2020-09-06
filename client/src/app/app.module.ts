@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,21 +9,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import {HttpClientModule} from '@angular/common/http';
-import { UserEffects } from './store/user/user.effects';
-import { ProductEffects } from './store/product/product.effects';
-import { OrderEffects } from './store/order/order.effects';
+import {UserEffects} from './store/user/user.effects';
+import {ProductEffects} from './store/product/product.effects';
+import {OrderEffects} from './store/order/order.effects';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MainPageComponent } from './main-page/main-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { CartComponent } from './cart/cart.component';
+import {MainPageComponent} from './main-page/main-page.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {LoginFormComponent} from './login-form/login-form.component';
+import {CartComponent} from './cart/cart.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoggedContentComponent } from './logged-content/logged-content.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
-import { ProductNavbarComponent } from './product-navbar/product-navbar.component';
-import { LoaderComponent } from './loader/loader.component';
-import { AddProductModalComponent } from './add-product-modal/add-product-modal.component';
+import {LoggedContentComponent} from './logged-content/logged-content.component';
+import {RegisterFormComponent} from './register-form/register-form.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {ProductNavbarComponent} from './product-navbar/product-navbar.component';
+import {LoaderComponent} from './loader/loader.component';
+import {AddProductModalComponent} from './add-product-modal/add-product-modal.component';
 
 @NgModule({
   declarations: [

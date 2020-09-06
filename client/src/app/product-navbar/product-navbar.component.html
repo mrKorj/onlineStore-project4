@@ -10,7 +10,8 @@
 
 <nav class="blue lighten-2">
   <div class="nav-wrapper">
-    <a href="#" data-target="mobile-product-category" class="sidenav-trigger"><i class="material-icons left">menu</i>Choose product category</a>
+    <a href="#" data-target="mobile-product-category" class="sidenav-trigger"><i class="material-icons left">menu</i>Choose
+      product category</a>
     <ul class="left hide-on-med-and-down">
       <li [ngClass]="{'active': link === 'Milk & Eggs'}" (click)="categoryHandler('Milk & Eggs')"><a>Milk & Eggs</a>
       </li>
@@ -23,22 +24,22 @@
       <li [ngClass]="{'active': link === 'Sweets & Kandy'}" (click)="categoryHandler('Sweets & Kandy')"><a>Sweets &
         Kandy</a></li>
       <li>
-        <button class="btn-small ml-3 modal-trigger" data-target="modal1">add product</button>
+        <button class="btn-small ml-3 modal-trigger" data-target="addProductModal">add product</button>
       </li>
     </ul>
   </div>
 </nav>
 
-<app-add-product-modal id="modal1" class="modal"></app-add-product-modal>
+<app-add-product-modal id="addProductModal" class="modal"></app-add-product-modal>
 
 <ul class="sidenav" id="mobile-product-category" style="height: calc(100vh - 64px); margin-top: 64px">
-  <li (click)="categoryHandler('Milk & Eggs')"><a class="sidenav-close">Milk & Eggs</a></li>
-  <li (click)="categoryHandler('Vegetables & Fruits')"><a class="sidenav-close">Vegetables & Fruits</a></li>
-  <li (click)="categoryHandler('Meat & Fish')"><a class="sidenav-close">Meat & Fish</a></li>
-  <li (click)="categoryHandler('Wine & Drink')"><a class="sidenav-close">Wine & Drink</a></li>
-  <li (click)="categoryHandler('Sweets & Kandy')"><a class="sidenav-close">Sweets & Kandy</a></li>
+  <li><a class="sidenav-close" (click)="categoryHandler('Milk & Eggs')">Milk & Eggs</a></li>
+  <li><a class="sidenav-close" (click)="categoryHandler('Vegetables & Fruits')">Vegetables & Fruits</a></li>
+  <li><a class="sidenav-close" (click)="categoryHandler('Meat & Fish')">Meat & Fish</a></li>
+  <li><a class="sidenav-close" (click)="categoryHandler('Wine & Drink')">Wine & Drink</a></li>
+  <li><a class="sidenav-close" (click)="categoryHandler('Sweets & Kandy')">Sweets & Kandy</a></li>
   <li>
-    <button class="btn-small ml-3">add product</button>
+    <button class="btn-small ml-3 modal-trigger" data-target="addProductModal">add product</button>
   </li>
 </ul>
 
