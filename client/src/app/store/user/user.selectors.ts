@@ -10,3 +10,8 @@ export const UserLoading = createSelector(
   (state: IState) => state.user,
   user => user.userLoading
 );
+
+export const UserCart = createSelector(
+  (state: IState) => state.user,
+  user => user.cart
+);

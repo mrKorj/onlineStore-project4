@@ -20,7 +20,10 @@ export const RegisterSuccess = createAction('[User] register success',
   props<{ name: string, lastName: string, role: string, cart: IProduct[] }>());
 export const RegisterFail = createAction('[User] register fail');
 
+export const AddToCart = createAction('[User] Add to cart', props<{ productId: string, count: number }>());
+export const AddToCartSuccess = createAction('[User] Add to cart success', props<{ cart: IProduct[] }>());
+export const AddToCartFail = createAction('[User] Add to cart fail');
 
-
-
-
+export const RemoveFromCart = createAction('[User] Remove from cart', props<{ productId: string }>());
+export const RemoveFromCartSuccess = createAction('[User] Remove from cart success', props<{ cart: IProduct[] }>());
+export const RemoveFromCartFail = createAction('[User] Remove from cart fail');

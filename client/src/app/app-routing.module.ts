@@ -5,11 +5,13 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {PrivateRoute} from './private.route';
 import {AdminRoute} from './admin.route';
 import {AdminPageComponent} from './admin-page/admin-page.component';
+import {ProductsPageComponent} from './products-page/products-page.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'register', component: RegisterFormComponent},
   {path: 'main', component: MainPageComponent, canActivate: [PrivateRoute]},
+  {path: 'products', component: ProductsPageComponent, canActivate: [PrivateRoute]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AdminRoute]},
   {path: '**', redirectTo: '/main'}
 ];

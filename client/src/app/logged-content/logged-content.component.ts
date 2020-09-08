@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
 import {User} from '../store/user/user.selectors';
@@ -12,7 +12,7 @@ import {IOrderState} from '../store/reducers/order.reducer';
   templateUrl: './logged-content.component.html',
   styleUrls: ['./logged-content.component.css']
 })
-export class LoggedContentComponent implements OnInit {
+export class LoggedContentComponent implements OnInit, OnChanges {
 
   user$: Observable<IUserState>;
   totalPrice = 0;
@@ -22,10 +22,19 @@ export class LoggedContentComponent implements OnInit {
     this.user$ = userStore.select(User);
   }
 
+  ngOnChanges(): void {
+    this.totalPrice = 0;
+  }
 
   ngOnInit(): void {
     this.orderService.getUserOrders().subscribe(orders => this.userOrders = orders[orders.length - 1]);
-    this.user$.subscribe(user => user.cart.forEach(item => this.totalPrice += item.price * item.count));
+    this.user$.subscribe(user => {
+      let price = 0;
+      user.cart.forEach(item => {
+        price += item.price * item.count;
+        this.totalPrice = price;
+      });
+    });
   }
 
 }

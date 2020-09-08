@@ -4,12 +4,13 @@ import {UserService} from '../../services/user.service';
 import {catchError, exhaustMap, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {
+  AddToCart, AddToCartFail, AddToCartSuccess,
   LoginFail,
   LoginStart,
   LoginSuccess,
   RegisterFail,
   RegisterStart,
-  RegisterSuccess,
+  RegisterSuccess, RemoveFromCart, RemoveFromCartFail, RemoveFromCartSuccess,
   UserAuthentication,
   UserAuthenticationFail,
   UserAuthenticationSuccess
@@ -71,6 +72,43 @@ export class UserEffects {
           classes: 'rounded pink darken-2'
         });
         return of(RegisterFail());
+      })
+    ))
+  ));
+
+  addToCart$ = createEffect(() => this.actions$.pipe(
+    ofType(AddToCart),
+    exhaustMap(action => this.userService.addToCart(action.productId, action.count).pipe(
+      map(cart => {
+        M.toast({
+          html: `<span class="flow-text">Product added to cart.</span>`,
+          displayLength: 6000,
+          classes: 'rounded green'
+        });
+        return AddToCartSuccess({cart});
+      }),
+      catchError(({error}) => {
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 5000,
+          classes: 'rounded pink darken-2'
+        });
+        return of(AddToCartFail());
+      })
+    ))
+  ));
+
+  removeFromCart$ = createEffect(() => this.actions$.pipe(
+    ofType(RemoveFromCart),
+    exhaustMap(action => this.userService.removeFromCart(action.productId).pipe(
+      map(cart => RemoveFromCartSuccess({cart})),
+      catchError(({error}) => {
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 5000,
+          classes: 'rounded pink darken-2'
+        });
+        return of(RemoveFromCartFail());
       })
     ))
   ));

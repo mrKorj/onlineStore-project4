@@ -1,9 +1,10 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import {IProduct} from './product.reducer';
 import {
+  AddToCart, AddToCartFail, AddToCartSuccess,
   LoginFail,
   LoginStart,
-  LoginSuccess, RegisterFail, RegisterStart, RegisterSuccess,
+  LoginSuccess, RegisterFail, RegisterStart, RegisterSuccess, RemoveFromCart, RemoveFromCartFail, RemoveFromCartSuccess,
   UserAuthentication,
   UserAuthenticationFail,
   UserAuthenticationSuccess, UserLogout
@@ -44,7 +45,16 @@ const reducer = createReducer(initialState,
     ({...state, logged: true, name, lastName, role, cart, userLoading: false})),
   on(RegisterFail, state => ({...state, logged: false, userLoading: false})),
 
-  on(UserLogout, () => initialState)
+  on(UserLogout, () => initialState),
+
+  on(AddToCart, state => ({...state, userLoading: true})),
+  on(AddToCartSuccess, (state, {cart}) => ({...state, cart, userLoading: false})),
+  on(AddToCartFail, state => ({...state, userLoading: false})),
+
+  on(RemoveFromCart, state => ({...state, userLoading: true})),
+  on(RemoveFromCartSuccess, (state, {cart}) => ({...state, cart, userLoading: false})),
+  on(RemoveFromCartFail, state => ({...state, userLoading: false})),
+
 );
 
 export const userReducer = (state: IUserState, action: Action) => {

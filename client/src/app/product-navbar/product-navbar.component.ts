@@ -3,6 +3,9 @@ import * as M from 'materialize-css';
 import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
 import {loadProducts, searchProduct} from '../store/product/product.actions';
+import {IUserState} from '../store/reducers/user.reducer';
+import {Observable} from 'rxjs';
+import {User} from '../store/user/user.selectors';
 
 @Component({
   selector: 'app-product-navbar',
@@ -13,8 +16,10 @@ export class ProductNavbarComponent implements OnInit {
 
   link = 'Milk & Eggs';
   searchValue = '';
+  user$: Observable<IUserState>;
 
-  constructor(private productStore: Store<IState>) {
+  constructor(private productStore: Store<IState>, private userStore: Store<IState>) {
+    this.user$ = this.userStore.select(User);
   }
 
   categoryHandler(category: string): void {

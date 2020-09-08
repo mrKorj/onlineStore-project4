@@ -1,0 +1,45 @@
+<div class="container" style="min-height: calc(100vh - 65px)">
+
+  <app-product-navbar></app-product-navbar>
+
+  <div class="products" *ngIf="(products$ | async).length || (productLoading | async); else noProducts">
+    <div class="prod" *ngFor="let product of (products$ | async)">
+      <!--card-->
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{product.picUrl}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{product.name}}<i
+            class="right pink-text lighten-2 material-icons">add_circle</i></span>
+          <p>price: {{product.price}} $</p>
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{product.name}}
+            <i class="material-icons right">close</i></span>
+          <p>price: {{product.price}} $</p>
+          <form class="row" (ngSubmit)="addToCart(product._id)" [formGroup]="addToCartForm">
+            <div style="display: flex; justify-content: center">
+              <a (click)="countChange(-1)"><i class="material-icons red-text">remove_circle</i></a>
+              <input type="number" style="width: 25%; height: 1.6rem" class="browser-default" min="1" [value]="tempCount" formControlName="count">
+              <a (click)="countChange(1)"><i class="material-icons green-text">add_circle</i></a>
+            </div>
+            <p class="center">
+              <button type="submit" class="add btn-small pink darken-2 waves-effect waves-light card-title">to cart</button>
+            </p>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #noProducts>
+  <div class="products">
+    <div class="card-panel red lighten-4">
+      sorry, No items found...
+    </div>
+  </div>
+</ng-template>

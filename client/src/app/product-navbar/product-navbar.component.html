@@ -23,7 +23,7 @@
       </li>
       <li [ngClass]="{'active': link === 'Sweets & Kandy'}" (click)="categoryHandler('Sweets & Kandy')"><a>Sweets &
         Kandy</a></li>
-      <li>
+      <li *ngIf="(user$ | async).role === 'admin'">
         <button class="btn-small ml-3 modal-trigger" data-target="addProductModal">add product</button>
       </li>
     </ul>
@@ -38,7 +38,7 @@
   <li><a class="sidenav-close" (click)="categoryHandler('Meat & Fish')">Meat & Fish</a></li>
   <li><a class="sidenav-close" (click)="categoryHandler('Wine & Drink')">Wine & Drink</a></li>
   <li><a class="sidenav-close" (click)="categoryHandler('Sweets & Kandy')">Sweets & Kandy</a></li>
-  <li>
+  <li *ngIf="(user$ | async).role === 'admin'">
     <button class="btn-small ml-3 modal-trigger" data-target="addProductModal">add product</button>
   </li>
 </ul>

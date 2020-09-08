@@ -1,6 +1,16 @@
 <ul id="slide-out" class="sidenav" style="height: calc(100vh - 64px); margin-top: 64px">
-  <li class="bold"><a href="#!" class="waves-effect waves-teal">First Sidebar Link</a></li>
-  <li class="bold"><a href="#!" class="waves-effect waves-teal">Second Sidebar Link</a></li>
-  <li class="bold"><a href="#!" class="waves-effect waves-teal">Second Sidebar Link</a></li>
-  <li class="bold"><a href="#!" class="waves-effect waves-teal">Second Sidebar Link</a></li>
+  <li class="center pink-text"><strong>{{user.name}}'s cart</strong></li>
+  <li *ngFor="let product of (cart$ | async)">
+    <a>{{product.name}} - {{product.count}} * {{product.price}}$
+      <i class="material-icons right red-text" title="delete from cart" (click)="deleteFromCart(product._id)">delete_forever</i>
+    </a>
+  </li>
+  <li class="center" *ngIf="(cart$ | async).length"><p>Total price: {{cartTotalPrice}} $</p></li>
+  <li class="center" *ngIf="(cart$ | async).length">
+    <button class="btn btn-small waves-effect pink">Checkout</button>
+  </li>
+  <li class="center" *ngIf="(cart$ | async).length === 0">
+    <img src="../assets/img/emptyCart2.png" alt="cart">
+  </li>
 </ul>
+

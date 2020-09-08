@@ -27,7 +27,6 @@ router.post('/add', async (req, res) => {
                 new: true,
                 projection: {'cart': 1, '_id': 0}
             }).exec()
-
             return res.send(updatedCart?.cart)
         }
 

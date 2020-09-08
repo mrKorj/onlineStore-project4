@@ -1,6 +1,6 @@
 <div class="card large">
   <div class="card-panel blue lighten-2">
-    <h5 class="center-align white-text">Your logged in...</h5>
+    <h5 class="center-align white-text">logged user...</h5>
   </div>
 
   <div class="card-content">
@@ -15,7 +15,7 @@
         </div>
         <p *ngIf="!userOrders">Let's start your first shopping.</p>
         <div class="card-content">
-          <button class="btn waves-effect pink darken-2">Start shopping</button>
+          <a routerLink="/products" class="btn waves-effect pink darken-2">Start shopping</a>
         </div>
       </div>
       <div class="card-content " *ngIf="(user$ | async).cart.length > 0">
@@ -23,7 +23,7 @@
         <p>Total price: {{totalPrice}} $.</p>
 
         <div class="card-content">
-          <button class="btn waves-effect pink darken-2">Resume shopping</button>
+          <a routerLink="/products" class="btn waves-effect pink darken-2">Resume shopping</a>
         </div>
         <div class="card-content">
           <button class="btn waves-effect pink">Checkout</button>

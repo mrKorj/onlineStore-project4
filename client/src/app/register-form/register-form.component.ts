@@ -61,8 +61,8 @@ export class RegisterFormComponent implements OnInit {
     street: this.fb.control('', [Validators.required]),
   });
 
-  passwordMatchValidator(frm: FormGroup): {} | null {
-    return frm.get('password').value === frm.get('password2').value ? null : {mismatch: true};
+  passwordMatchValidator(form: FormGroup): {} | null {
+    return form.get('password').value === form.get('password2').value ? null : {mismatch: true};
   }
 
   changeCity(e): void {

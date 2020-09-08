@@ -24,6 +24,7 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 import {ProductNavbarComponent} from './product-navbar/product-navbar.component';
 import {LoaderComponent} from './loader/loader.component';
 import {AddProductModalComponent} from './add-product-modal/add-product-modal.component';
+import { ProductsPageComponent } from './products-page/products-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AddProductModalComponent} from './add-product-modal/add-product-modal.co
     AdminPageComponent,
     ProductNavbarComponent,
     LoaderComponent,
-    AddProductModalComponent
+    AddProductModalComponent,
+    ProductsPageComponent
   ],
     imports: [
         BrowserModule,
