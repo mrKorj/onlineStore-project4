@@ -5,19 +5,23 @@
       <li><a data-target="dropdown" class="sidenav-trigger show-on-large"><i class="material-icons left">menu</i></a></li>
     </ul>
 
+    <div *ngIf="(user$ | async).role !== 'admin'">
+      <strong class="left ml-3 hide-on-med-and-down"><i class="material-icons left">call</i>+972-3-1234567</strong>
+      <a href="mailto:support@foody.com" class="left ml-3 hide-on-med-and-down"><i class="material-icons left">alternate_email</i>support@foody.com</a>
+    </div>
 
-    <strong class="left ml-3 hide-on-med-and-down"><i class="material-icons left">call</i>+972-3-1234567</strong>
-    <a href="mailto:support@foody.com" class="left ml-3 hide-on-med-and-down"><i class="material-icons left">alternate_email</i>support@foody.com</a>
+    <h5 *ngIf="(user$ | async).role === 'admin'" class="left ml-3 hide-on-med-and-down">Admin dashboard</h5>
+
       <!--  Logo  -->
     <a routerLink="/" class="brand-logo center my-logo">Foody Store</a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li *ngIf="(user$ | async).role !== 'admin' && (user$ | async).logged"><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
+      <li ><a class="dropdown-trigger" id="user_drop" data-target="user_dropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
       <li><span>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</span></li>
-      <li *ngIf="(user$ | async).role !== 'admin'"><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
-      <li><a routerLink="/" (click)="logOut()">Log Out</a></li>
     </ul>
     <!-- Mobile Cart   -->
-    <ul class="right hide-on-large-only">
+    <ul class="right hide-on-large-only" *ngIf="(user$ | async).role !== 'admin'">
       <li><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
     </ul>
   </div>
@@ -31,7 +35,12 @@
   <li class="divider"></li>
   <li><a href="mailto:support@foody.com"><i class="material-icons left">alternate_email</i>support@foody.com</a></li>
   <li class="divider"></li>
-  <li><a href="#">About</a></li>
-  <li><a href="#" (click)="logOut()">Log Out</a></li>
+  <li><a class="sidenav-close" routerLink="/order/history">Orders History</a></li>
+  <li><a class="sidenav-close" href="#" (click)="logOut()">Log Out</a></li>
 </ul>
 
+<!-- User Dropdown Structure -->
+<ul id='user_dropdown' class='dropdown-content'>
+  <li *ngIf="(user$ | async).logged"><a class="black-text" routerLink="/order/history">Orders History</a></li>
+  <li *ngIf="(user$ | async).logged"><a class="black-text" routerLink="/" (click)="logOut()">Log Out</a></li>
+</ul>

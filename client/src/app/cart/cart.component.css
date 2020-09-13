@@ -1,7 +1,8 @@
 i {
   cursor: pointer;
+  margin: 0 5px 0 0 !important;
 }
 
-img {
-  max-width: 100%;
+.sidenav li>a {
+  padding: 0 10px;
 }

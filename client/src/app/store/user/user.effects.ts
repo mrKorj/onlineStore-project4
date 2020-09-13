@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {catchError, exhaustMap, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {
-  AddToCart, AddToCartFail, AddToCartSuccess,
+  AddToCart, AddToCartFail, AddToCartSuccess, ClearCart, ClearCartFail, ClearCartSuccess,
   LoginFail,
   LoginStart,
   LoginSuccess,
@@ -109,6 +109,21 @@ export class UserEffects {
           classes: 'rounded pink darken-2'
         });
         return of(RemoveFromCartFail());
+      })
+    ))
+  ));
+
+  clearCart$ = createEffect(() => this.actions$.pipe(
+    ofType(ClearCart),
+    exhaustMap(() => this.userService.clearCart().pipe(
+      map(cart => ClearCartSuccess({cart})),
+      catchError(({error}) => {
+        M.toast({
+          html: `<span class="flow-text">${error}</span>`,
+          displayLength: 5000,
+          classes: 'rounded pink darken-2'
+        });
+        return of(ClearCartFail());
       })
     ))
   ));

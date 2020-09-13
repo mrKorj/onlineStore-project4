@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     M.Sidenav.init(document.querySelector('#dropdown'), {edge: 'left'});
     M.Sidenav.init(document.querySelector('#slide-out'), {edge: 'right'});
+    M.Dropdown.init(document.querySelector('#user_drop'));
   }
 
   logOut(): void {

@@ -41,4 +41,8 @@ export class UserService {
   removeFromCart(productId): Observable<IProduct[]> {
     return this.http.post<IProduct[]>('http://localhost:4000/api/cart/delete', {productId}, {withCredentials: true});
   }
+
+  clearCart(): Observable<[]> {
+    return this.http.delete<[]>('http://localhost:4000/api/cart/clear_cart', {withCredentials: true});
+  }
 }

@@ -1,6 +1,7 @@
 <div style="background-image: url('../assets/img/background2.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+  <app-action-btn *ngIf="(user$ | async).role !== 'admin' && (user$ | async).logged"></app-action-btn>
 </div>
 <app-cart [user]="user$ | async"></app-cart>
 

@@ -33,10 +33,9 @@ router.post('/add', async (req, res) => {
         const product = await Product.findById(productId).exec()
         const cartProduct = {...product?.toObject(), count}
 
-        // @ts-ignore
-        const {cart} = await User.findOneAndUpdate({email}, {$push: {cart: cartProduct}}, {new: true}).exec()
+        const user = await User.findOneAndUpdate({email}, {$push: {cart: cartProduct}}, {new: true}).exec()
 
-        res.send(cart)
+        res.send(user?.cart)
     } catch (e) {
         res.status(500).send(e.message)
     }
@@ -52,9 +51,28 @@ router.post('/delete', async (req, res) => {
     }
 
     try {
-        // @ts-ignore
-        const {cart} = await User.findOneAndUpdate({email}, {$pull: {cart: {_id: productId}}}, {new: true}).exec()
-        res.send(cart)
+        const user = await User.findOneAndUpdate({email}, {$pull: {cart: {_id: productId}}}, {new: true}).exec()
+        res.send(user?.cart)
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+})
+
+
+// ------ clear cart
+router.delete('/clear_cart', async (req, res) => {
+    const {email, role} = (req as any).user // from express-jwt middleware
+
+    if (role === 'admin') {
+        return res.status(403).send({message: 'user doesn\'t have permission'})
+    }
+
+    try {
+        const user = await User.updateMany({email}, {$pull: {cart: {}}}, {new: true}).exec()
+        if (user.nModified) {
+            return res.send([])
+        }
+        res.send(user.nModified)
     } catch (e) {
         res.status(500).send(e.message)
     }

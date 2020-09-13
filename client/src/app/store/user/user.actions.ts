@@ -27,3 +27,7 @@ export const AddToCartFail = createAction('[User] Add to cart fail');
 export const RemoveFromCart = createAction('[User] Remove from cart', props<{ productId: string }>());
 export const RemoveFromCartSuccess = createAction('[User] Remove from cart success', props<{ cart: IProduct[] }>());
 export const RemoveFromCartFail = createAction('[User] Remove from cart fail');
+
+export const ClearCart = createAction('[User] Clear cart');
+export const ClearCartSuccess = createAction('[User] Clear cart success', props<{ cart: [] }>());
+export const ClearCartFail = createAction('[User] Clear cart fail');

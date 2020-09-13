@@ -1,0 +1,51 @@
+<div class="card-content" style="padding-top: 15px">
+  <div class="row">
+    <form [formGroup]="orderForm" (ngSubmit)="order()">
+      <div class="col s12 grey lighten-3">
+        <p>Chipping details</p>
+      </div>
+
+      <div class="input-field inline col s12">
+        <select class="browser-default" formControlName="city" (change)="changeCity($event)">
+          <option value="" disabled selected>Choose your city</option>
+          <option *ngFor="let city of allCity" [value]="city">{{city}}</option>
+        </select>
+      </div>
+
+      <div class="input-field inline col s12">
+        <input id="street" type="text" class="validate" formControlName="street" minlength="3">
+        <label for="street">Street</label>
+      </div>
+
+      <div class="input-field inline col s12">
+        <input id="shippingDate" type="date" class="validate" formControlName="shippingDate" [min]="minDate"
+               [class.valid]="orderForm.controls['shippingDate'].valid && orderForm.controls['shippingDate'].touched"
+               [class.invalid]="!orderForm.controls['shippingDate'].valid && orderForm.controls['shippingDate'].touched">
+        <label for="shippingDate">Shipping date</label>
+        <div class="col s12">
+          <small *ngIf="orderForm.controls['shippingDate'].errors" class="red-text">
+            {{orderForm.controls['shippingDate'].errors.message}}
+          </small>
+        </div>
+
+      </div>
+
+      <div class="col s12 grey lighten-3">
+        <p>Payments</p>
+      </div>
+
+      <div class="input-field inline col s12">
+        <input id="creditCard" type="number"
+               [class.valid]="orderForm.controls['creditCard'].valid && orderForm.controls['creditCard'].touched"
+               [class.invalid]="!orderForm.controls['creditCard'].valid && orderForm.controls['creditCard'].touched"
+               formControlName="creditCard">
+        <label for="creditCard">card number</label>
+      </div>
+
+      <div class="center-align col s12">
+        <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!orderForm.valid">Order</button>
+      </div>
+
+    </form>
+  </div>
+</div>

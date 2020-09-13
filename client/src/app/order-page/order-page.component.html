@@ -1,0 +1,32 @@
+<div class="valign-wrapper container main">
+  <div class="row">
+    <div class="col s12 m6 l4 offset-l2">
+      <div class="card large section">
+        <h5 class="center pink-text">Your cart</h5>
+        <div style="height: 70%; overflow-y: auto">
+          <ul>
+            <li *ngFor="let product of (user$ | async).cart">
+              <a class="truncate" [title]="product.name + ' - ' + product.count + ' * ' + product.price + '$'">
+                <img [src]="product.picUrl" [alt]="product.name"
+                     style="height: 25px; margin: 0 10px 0 15px; max-width: 25px" class="">
+                {{product.name}} - {{product.count}} * {{product.price}}$
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="center card-action">
+          <p style="font-weight: bold">Total price: {{cartTotalPrice | number}} $</p>
+          <button routerLink="/products" class="btn btn-small waves-effect pink">Back shop</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6 l4">
+      <div class="card large section center-align">
+        <app-order-form></app-order-form>
+      </div>
+    </div>
+
+  </div>
+</div>

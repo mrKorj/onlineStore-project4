@@ -9,24 +9,24 @@
         <p>Hello {{(user$ | async).name}}</p>
       </div>
       <div class="" *ngIf="(user$ | async).cart.length === 0 && (user$ | async).role !== 'admin'">
-        <div class="card-content" *ngIf="userOrders">
-          <p>Date of your last order:  {{userOrders.orderDate | date: 'short'}}</p>
-          <p>Total price:  {{userOrders.totalPrice}} $</p>
+        <div class="card-content" *ngIf="lastOrder">
+          <p>Date of your last order:  {{lastOrder.orderDate | date: 'short'}}</p>
+          <p>Total price:  {{lastOrder.totalPrice}} $</p>
         </div>
-        <p *ngIf="!userOrders">Let's start your first shopping.</p>
+        <p *ngIf="!lastOrder">Let's start your first shopping.</p>
         <div class="card-content">
-          <a routerLink="/products" class="btn waves-effect pink darken-2">Start shopping</a>
+          <a routerLink="/products" class="btn waves-effect pink darken-2 pulse">Start shopping</a>
         </div>
       </div>
       <div class="card-content " *ngIf="(user$ | async).cart.length > 0">
         <p>You have open cart with: {{(user$ | async).cart.length}} items.</p>
-        <p>Total price: {{totalPrice}} $.</p>
+        <p>Total price: {{totalPrice | number}} $.</p>
 
         <div class="card-content">
-          <a routerLink="/products" class="btn waves-effect pink darken-2">Resume shopping</a>
+          <a routerLink="/products" class="btn waves-effect pink darken-2 pulse">Resume shopping</a>
         </div>
         <div class="card-content">
-          <button class="btn waves-effect pink">Checkout</button>
+          <a routerLink="/order" class="btn waves-effect pink">Checkout</a>
         </div>
       </div>
 

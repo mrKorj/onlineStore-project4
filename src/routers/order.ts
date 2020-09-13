@@ -33,21 +33,21 @@ router.post('/', async (req, res) => {
         const order = new Order({userId: email, city, street, shippingDate, creditCard, totalPrice, items: userCart?.cart})
         await order.save()
         // @ts-ignore
-        const {cart} = await User.findOneAndUpdate({email}, {cart: []}, {new: true}).exec()
+        // const {cart} = await User.findOneAndUpdate({email}, {cart: []}, {new: true}).exec()
 
-        res.send({order, cart})
+        res.send({order})
     } catch (e) {
         res.status(500).send(e.message)
     }
 })
 
 //----check shipping date status
-router.get('/shipping', async (req, res) => {
+router.post('/shipping', async (req, res) => {
     const {shippingDate} = req.body
     const orders = await Order.find({shippingDate}).exec()
 
     if (orders.length >= 3) {
-       return res.send({message: 'We are very busy on this date, please choose another day.', status: false})
+       return res.send({status: false})
     }
     res.send({status: true})
 })

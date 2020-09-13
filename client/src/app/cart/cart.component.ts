@@ -4,7 +4,7 @@ import {IState} from '../store/reducers';
 import {Observable} from 'rxjs';
 import {IProduct} from '../store/reducers/product.reducer';
 import {UserCart} from '../store/user/user.selectors';
-import {RemoveFromCart} from '../store/user/user.actions';
+import {ClearCart, RemoveFromCart} from '../store/user/user.actions';
 import {IUserState} from '../store/reducers/user.reducer';
 
 @Component({
@@ -24,6 +24,10 @@ export class CartComponent implements OnInit {
 
   deleteFromCart(productId): void {
     this.userState.dispatch(RemoveFromCart({productId}));
+  }
+
+  clearCart(): void {
+    this.userState.dispatch(ClearCart());
   }
 
   ngOnInit(): void {

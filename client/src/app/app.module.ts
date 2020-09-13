@@ -25,6 +25,10 @@ import {ProductNavbarComponent} from './product-navbar/product-navbar.component'
 import {LoaderComponent} from './loader/loader.component';
 import {AddProductModalComponent} from './add-product-modal/add-product-modal.component';
 import { ProductsPageComponent } from './products-page/products-page.component';
+import { ActionBtnComponent } from './action-btn/action-btn.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { OrderFormComponent } from './order-form/order-form.component';
+import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { ProductsPageComponent } from './products-page/products-page.component';
     ProductNavbarComponent,
     LoaderComponent,
     AddProductModalComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    ActionBtnComponent,
+    OrderPageComponent,
+    OrderFormComponent,
+    OrdersHistoryComponent
   ],
     imports: [
         BrowserModule,

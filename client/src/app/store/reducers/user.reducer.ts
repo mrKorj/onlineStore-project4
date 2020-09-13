@@ -1,7 +1,7 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import {IProduct} from './product.reducer';
 import {
-  AddToCart, AddToCartFail, AddToCartSuccess,
+  AddToCart, AddToCartFail, AddToCartSuccess, ClearCart, ClearCartFail, ClearCartSuccess,
   LoginFail,
   LoginStart,
   LoginSuccess, RegisterFail, RegisterStart, RegisterSuccess, RemoveFromCart, RemoveFromCartFail, RemoveFromCartSuccess,
@@ -55,6 +55,9 @@ const reducer = createReducer(initialState,
   on(RemoveFromCartSuccess, (state, {cart}) => ({...state, cart, userLoading: false})),
   on(RemoveFromCartFail, state => ({...state, userLoading: false})),
 
+  on(ClearCart, state => ({...state, userLoading: true})),
+  on(ClearCartSuccess, (state, {cart}) => ({...state, cart, userLoading: false})),
+  on(ClearCartFail, state => ({...state, userLoading: false}))
 );
 
 export const userReducer = (state: IUserState, action: Action) => {

@@ -4,8 +4,9 @@ import {IState} from '../store/reducers';
 import {User} from '../store/user/user.selectors';
 import {Observable} from 'rxjs';
 import {IUserState} from '../store/reducers/user.reducer';
-import {OrderService} from '../services/order.service';
-import {IOrderState} from '../store/reducers/order.reducer';
+import {IOrder} from '../store/reducers/order.reducer';
+import {Order} from '../store/order/order.selectors';
+import {loadOrders} from '../store/order/order.actions';
 
 @Component({
   selector: 'app-logged-content',
@@ -15,11 +16,13 @@ import {IOrderState} from '../store/reducers/order.reducer';
 export class LoggedContentComponent implements OnInit, OnChanges {
 
   user$: Observable<IUserState>;
+  userOrders$: Observable<IOrder[]>;
+  lastOrder: IOrder;
   totalPrice = 0;
-  userOrders: IOrderState;
 
-  constructor(private userStore: Store<IState>, private orderService: OrderService) {
+  constructor(private userStore: Store<IState>, private orderStore: Store<IState>) {
     this.user$ = userStore.select(User);
+    this.userOrders$ = orderStore.select(Order);
   }
 
   ngOnChanges(): void {
@@ -27,7 +30,8 @@ export class LoggedContentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.orderService.getUserOrders().subscribe(orders => this.userOrders = orders[orders.length - 1]);
+    this.orderStore.dispatch(loadOrders());
+    this.userOrders$.subscribe(orders => this.lastOrder = orders[orders.length - 1]);
     this.user$.subscribe(user => {
       let price = 0;
       user.cart.forEach(item => {
@@ -36,5 +40,4 @@ export class LoggedContentComponent implements OnInit, OnChanges {
       });
     });
   }
-
 }

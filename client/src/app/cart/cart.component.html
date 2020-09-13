@@ -1,16 +1,20 @@
-<ul id="slide-out" class="sidenav" style="height: calc(100vh - 64px); margin-top: 64px">
+<ul id="slide-out" class="sidenav" style="height: calc(100vh - 64px); margin-top: 64px; width: 350px">
   <li class="center pink-text"><strong>{{user.name}}'s cart</strong></li>
   <li *ngFor="let product of (cart$ | async)">
-    <a>{{product.name}} - {{product.count}} * {{product.price}}$
+    <a class="truncate" [title]="product.name + ' - ' + product.count + ' * ' + product.price + '$'">
+      <img [src]="product.picUrl" [alt]="product.name" style="height: 65%; margin-top: 8px; margin-right: 5px; max-width: 32px" class="left">
       <i class="material-icons right red-text" title="delete from cart" (click)="deleteFromCart(product._id)">delete_forever</i>
+      {{product.name}} - {{product.count}} * {{product.price}}$
     </a>
   </li>
-  <li class="center" *ngIf="(cart$ | async).length"><p>Total price: {{cartTotalPrice}} $</p></li>
+  <li class="center" *ngIf="(cart$ | async).length"><p>Total price: {{cartTotalPrice | number}} $</p></li>
   <li class="center" *ngIf="(cart$ | async).length">
-    <button class="btn btn-small waves-effect pink">Checkout</button>
+    <hr/>
+    <button class="btn-small grey" style="margin-right: 10px" (click)="clearCart()">clear cart</button>
+    <button routerLink="/order" class="btn btn-small waves-effect pink sidenav-close">Checkout</button>
   </li>
   <li class="center" *ngIf="(cart$ | async).length === 0">
-    <img src="../assets/img/emptyCart2.png" alt="cart">
+    <img class="responsive-img" src="../assets/img/emptyCart2.png" alt="cart">
   </li>
 </ul>
 

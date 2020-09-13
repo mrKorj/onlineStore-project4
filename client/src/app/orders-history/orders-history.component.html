@@ -1,0 +1,30 @@
+<div class="valign-wrapper container main">
+  <div class="row">
+    <div class="col s12 m6 l4 offset-l2">
+      <div class="card large section">
+        <h5 class="center pink-text">Your orders</h5>
+        <div style="height: 70%; overflow-y: auto" class="order-cart">
+          <ul>
+            <li *ngFor="let order of (orders$ | async)">
+              <p class="truncate">
+                order date: {{order.orderDate | date}} - order price: {{order.totalPrice | number}}$
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="center card-action">
+          <button routerLink="/products" class="btn btn-small waves-effect pink">Back shop</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6 l4">
+      <div class="card large section center-align">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+

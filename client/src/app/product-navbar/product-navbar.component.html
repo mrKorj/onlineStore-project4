@@ -24,7 +24,7 @@
       <li [ngClass]="{'active': link === 'Sweets & Kandy'}" (click)="categoryHandler('Sweets & Kandy')"><a>Sweets &
         Kandy</a></li>
       <li *ngIf="(user$ | async).role === 'admin'">
-        <button class="btn-small ml-3 modal-trigger" data-target="addProductModal">add product</button>
+        <button class="btn-small ml-3 modal-trigger pink" data-target="addProductModal">add product</button>
       </li>
     </ul>
   </div>

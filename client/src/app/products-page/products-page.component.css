@@ -30,3 +30,7 @@ a {
 .add {
   font-size: 1rem;
 }
+
+.row {
+   margin-bottom: 0;
+}
