@@ -8,7 +8,7 @@
             <li *ngFor="let product of (user$ | async).cart">
               <a class="truncate" [title]="product.name + ' - ' + product.count + ' * ' + product.price + '$'">
                 <img [src]="product.picUrl" [alt]="product.name"
-                     style="height: 25px; margin: 0 10px 0 15px; max-width: 25px" class="">
+                     style="height: 25px; margin: 0 10px 0 15px; max-width: 25px">
                 {{product.name}} - {{product.count}} * {{product.price}}$
               </a>
             </li>

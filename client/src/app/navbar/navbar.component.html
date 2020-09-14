@@ -17,8 +17,11 @@
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li *ngIf="(user$ | async).role !== 'admin' && (user$ | async).logged"><a data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">shopping_cart</i>{{(user$ | async).cart.length}}</a></li>
-      <li ><a class="dropdown-trigger" id="user_drop" data-target="user_dropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
-      <li><span>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</span></li>
+      <li >
+        <a class="dropdown-trigger" id="user_drop" data-target="user_dropdown"><i class="material-icons left">person</i>
+          Hi {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}
+        </a>
+      </li>
     </ul>
     <!-- Mobile Cart   -->
     <ul class="right hide-on-large-only" *ngIf="(user$ | async).role !== 'admin'">
@@ -41,6 +44,6 @@
 
 <!-- User Dropdown Structure -->
 <ul id='user_dropdown' class='dropdown-content'>
-  <li *ngIf="(user$ | async).logged"><a class="black-text" routerLink="/order/history">Orders History</a></li>
+  <li *ngIf="(user$ | async).logged && (user$ | async).role !== 'admin'"><a class="black-text" routerLink="/order/history">Orders History</a></li>
   <li *ngIf="(user$ | async).logged"><a class="black-text" routerLink="/" (click)="logOut()">Log Out</a></li>
 </ul>

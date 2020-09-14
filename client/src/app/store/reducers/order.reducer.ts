@@ -8,6 +8,7 @@ import {
   loadOrdersFail,
   loadOrdersSuccess
 } from '../order/order.actions';
+import {UserLogout} from '../user/user.actions';
 
 export interface IOrderState {
   orders: IOrder[];
@@ -15,6 +16,7 @@ export interface IOrderState {
 }
 
 export interface IOrder {
+  _id?: string;
   userId: string;
   city: string;
   street: string;
@@ -42,6 +44,7 @@ const reducer = createReducer(
   on(addNewOrderSuccess, ((state, {order}) => ({...state, orders: [...state.orders, order], orderLoading: false}))),
   on(addNewOrderFail, state => ({...state, orderLoading: false})),
 
+  on(UserLogout, state => ({...state, orders: []}))
 );
 
 export const orderReducer = (state: IOrderState, action: Action) => {

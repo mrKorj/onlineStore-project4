@@ -30,11 +30,9 @@ router.post('/', async (req, res) => {
 
         invoice += `\n\n Total price: ${totalPrice} $. \n Order date: ${new Date()}.`
 
-        const order = new Order({userId: email, city, street, shippingDate, creditCard, totalPrice, items: userCart?.cart})
-        await order.save()
-        // @ts-ignore
-        // const {cart} = await User.findOneAndUpdate({email}, {cart: []}, {new: true}).exec()
-
+        const newOrder = new Order({userId: email, city, street, shippingDate, creditCard, totalPrice, items: userCart?.cart})
+        await newOrder.save()
+        const order = {...newOrder.toObject(), creditCard: null}
         res.send({order})
     } catch (e) {
         res.status(500).send(e.message)
@@ -69,7 +67,10 @@ router.get('/total_orders', async (req, res) => {
 // ---- get order by user id
 router.get('/user_orders', async (req, res) => {
     const {email} = (req as any).user
-    const orders = await Order.find({userId: email}).exec()
+    const userOrders = await Order.find({userId: email}).exec()
+    const orders = userOrders.map(order => {
+        return {...order.toObject(), creditCard: null}
+    })
     res.send(orders)
 })
 

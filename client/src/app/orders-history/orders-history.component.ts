@@ -13,12 +13,28 @@ import {Order} from '../store/order/order.selectors';
 export class OrdersHistoryComponent implements OnInit {
 
   orders$: Observable<IOrder[]>;
+  orderDetails: IOrder;
+  index = 0;
 
   constructor(private orderState: Store<IState>) {
     this.orders$ = orderState.select(Order);
   }
 
+  orderDetailsHandler(orderId, i): void {
+    this.index = i;
+    this.orders$.subscribe(orders => {
+      orders.forEach(order => {
+        if (order._id === orderId) {
+          this.orderDetails = order;
+        }
+      });
+    });
+  }
+
   ngOnInit(): void {
+    this.orders$.subscribe(orders => {
+      this.orderDetails = orders[0];
+    });
   }
 
 }

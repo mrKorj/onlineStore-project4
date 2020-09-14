@@ -1,19 +1,21 @@
 <div class="card large">
   <div class="card-panel blue lighten-2">
-    <h5 class="center-align white-text">logged user...</h5>
+    <h5 class="center-align white-text">Welcome {{(user$ | async).name}}</h5>
   </div>
 
   <div class="card-content">
     <div class="row center-align">
       <div>
-        <p>Hello {{(user$ | async).name}}</p>
+        <p><i class="material-icons small">store</i></p>
       </div>
       <div class="" *ngIf="(user$ | async).cart.length === 0 && (user$ | async).role !== 'admin'">
         <div class="card-content" *ngIf="lastOrder">
-          <p>Date of your last order:  {{lastOrder.orderDate | date: 'short'}}</p>
-          <p>Total price:  {{lastOrder.totalPrice}} $</p>
+          <p>Your last purchase was on:</p>
+          <strong>{{lastOrder.orderDate | date: 'short'}}</strong>
+          <p>Total price: <strong>{{lastOrder.totalPrice | number}} $</strong></p>
         </div>
-        <p *ngIf="!lastOrder">Let's start your first shopping.</p>
+        <p *ngIf="!lastOrder">Let's start your first purchase.</p>
+        <p class="divider"></p>
         <div class="card-content">
           <a routerLink="/products" class="btn waves-effect pink darken-2 pulse">Start shopping</a>
         </div>

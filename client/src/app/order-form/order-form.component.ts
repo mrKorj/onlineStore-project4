@@ -5,8 +5,6 @@ import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
 import {ClearCart} from '../store/user/user.actions';
 import {addNewOrder} from '../store/order/order.actions';
-import Swal from 'sweetalert2';
-import {deleteProduct} from '../store/product/product.actions';
 import {Router} from '@angular/router';
 
 const regxCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
@@ -43,18 +41,6 @@ export class OrderFormComponent implements OnInit {
     const order = this.orderForm.value;
     this.orderState.dispatch(addNewOrder({...order}));
     this.userState.dispatch(ClearCart());
-
-    Swal.fire({
-      title: 'Order successfully accepted!',
-      icon: 'success',
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Ok',
-      allowOutsideClick: false,
-      html:
-        'You can download the invoice from this ' + '<a href="http://localhost:4000/api/order/invoice">link</a>',
-    }).then(() => {
-      this.router.navigateByUrl('/main');
-    });
   }
 
   ngOnInit(): void {
