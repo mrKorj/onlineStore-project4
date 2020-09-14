@@ -7,8 +7,8 @@ import {hash} from 'bcrypt'
 const router = Router()
 
 router.post('/ping', async (req, res) => {
-    const {idNumber, email} = req.body
-    const user = await User.findOne({$or:[{idNumber}, {email}]}).exec()
+    const {email} = req.body
+    const user = await User.findOne( {email}).exec()
 
     if (user) {
         return res.send({message: 'user already exists', status: false})

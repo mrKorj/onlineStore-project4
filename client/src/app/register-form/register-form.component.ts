@@ -6,8 +6,8 @@ import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
 import {User} from '../store/user/user.selectors';
 import {UserService} from '../services/user.service';
-import * as M from 'materialize-css';
 import {RegisterStart} from '../store/user/user.actions';
+import {RegisterValidator} from '../services/registerValidator';
 
 export interface IRegisterData {
   email: string;
@@ -28,7 +28,6 @@ export class RegisterFormComponent implements OnInit {
 
   user$: Observable<IUserState>;
   isExist: boolean;
-  message: '';
   registerData: IRegisterData = {
     email: null,
     password: null,
@@ -41,12 +40,18 @@ export class RegisterFormComponent implements OnInit {
   allCity: any = ['Jerusalem', 'Tel Aviv', 'Rishon Le Zion', 'Petah Tikva', 'Ashdod', 'Rehovot', 'Haifa', 'Carmiel', 'Eilat'];
 
 
-  constructor(private fb: FormBuilder, private userStore: Store<IState>, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userStore: Store<IState>, private userService: UserService,
+              private registerValidator: RegisterValidator) {
     this.user$ = userStore.select(User);
   }
 
   registerForm = this.fb.group({
-      email: this.fb.control('', [Validators.required, Validators.email]),
+      email: this.fb.control('', {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [this.registerValidator.validate.bind(this.registerValidator)]
+        }
+      ),
       password: this.fb.control('', [Validators.required]),
       password2: this.fb.control('', [Validators.required]),
       id: this.fb.control('', [Validators.required, Validators.min(9999999), Validators.max(999999999)]),
@@ -75,19 +80,12 @@ export class RegisterFormComponent implements OnInit {
 
   registerPing(): void {
     const {id, email, password} = this.registerForm.value;
-    this.userService.registerPing(id, email)
+    this.userService.registerPing(email)
       .subscribe(response => {
         this.isExist = response.status;
         if (this.isExist) {
           this.registerData = {...this.registerData, idNumber: id, email, password};
-          return;
         }
-        M.toast({
-          html: `<span class="flow-text">${response.message}</span>`,
-          displayLength: 8000,
-          classes: 'rounded pink darken-2'
-        });
-        this.message = response.message;
       });
   }
 

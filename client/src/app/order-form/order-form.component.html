@@ -12,7 +12,7 @@
         </select>
       </div>
 
-      <div class="input-field inline col s12">
+      <div class="input-field inline col s12" style="margin-top: 0">
         <input id="street" type="text" class="validate" formControlName="street" minlength="3">
         <label for="street">Street</label>
       </div>
@@ -22,11 +22,11 @@
                [class.valid]="orderForm.controls['shippingDate'].valid && orderForm.controls['shippingDate'].touched"
                [class.invalid]="!orderForm.controls['shippingDate'].valid && orderForm.controls['shippingDate'].touched">
         <label for="shippingDate">Shipping date</label>
-        <div class="col s12">
-          <small *ngIf="orderForm.controls['shippingDate'].errors" class="red-text">
+        <span class="helper-text">
+          <span *ngIf="orderForm.controls['shippingDate'].errors" class="red-text">
             {{orderForm.controls['shippingDate'].errors.message}}
-          </small>
-        </div>
+          </span>
+        </span>
 
       </div>
 
@@ -40,6 +40,7 @@
                [class.invalid]="!orderForm.controls['creditCard'].valid && orderForm.controls['creditCard'].touched"
                formControlName="creditCard">
         <label for="creditCard">card number</label>
+        <span class="helper-text" data-error="incorrect number"></span>
       </div>
 
       <div class="center-align col s12">

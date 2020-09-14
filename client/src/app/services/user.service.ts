@@ -25,8 +25,8 @@ export class UserService {
     this.http.get('http://localhost:4000/api/login', {withCredentials: true}).subscribe();
   }
 
-  registerPing(idNumber: number, email: string): Observable<any> {
-    return this.http.post<any>('http://localhost:4000/api/register/ping', {idNumber, email});
+  registerPing(email: string): Observable<{status: boolean}> {
+    return this.http.post<{status: boolean}>('http://localhost:4000/api/register/ping', {email});
   }
 
   register(registerData): Observable<IUserState> {

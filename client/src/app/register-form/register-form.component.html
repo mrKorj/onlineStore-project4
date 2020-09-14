@@ -11,15 +11,23 @@
             <form class="col s12" [formGroup]="registerForm" (ngSubmit)="registerPing()">
               <div class="row center-align">
                 <div class="input-field inline col s12">
-                  <input id="id" type="number" class="validate" formControlName="id" min="9999999" max="999999999">
-                  <span class="helper-text" data-error="ID must be 9 digits" data-success=""></span>
+                  <input id="email" type="email" class="validate" formControlName="email"
+                         [class.valid]="registerForm.controls['email'].valid && registerForm.controls['email'].touched"
+                         [class.invalid]="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">
+                  <label for="email">Email</label>
+                  <span class="helper-text" data-error="incorrect email">
+                    <span *ngIf="registerForm.controls['email'].errors" class="red-text">
+                      {{registerForm.controls['email'].errors.message}}
+                    </span>
+                  </span>
+                </div>
+
+                <div class="input-field inline col s12">
+                  <input id="id" type="number" class="validate" formControlName="id" min="99999999" max="999999999">
+                  <span class="helper-text" data-error="ID must be 9 digits"></span>
                   <label for="id">ID Number</label>
                 </div>
-                <div class="input-field inline col s12">
-                  <input id="email" type="email" class="validate" formControlName="email">
-                  <label for="email">Email</label>
-                  <span class="helper-text" data-error="incorrect email" data-success=""></span>
-                </div>
+
                 <div class="input-field inline col s6">
                   <input id="password" type="password" formControlName="password">
                   <label for="password">Password</label>
@@ -32,7 +40,6 @@
                     Passwords don't match.
                   </span>
                 </div>
-                <strong class="red-text">{{message}}</strong>
                 <div class="center-align col s12 card-action">
                   <button class="btn waves-effect blue lighten-2" type="submit" [disabled]="!registerForm.valid">Sign
                     up
