@@ -34,8 +34,6 @@ export class ProductsPageComponent implements OnInit {
       return;
     }
     this.addToCartForm.get('count').setValue(this.tempCount);
-    // console.log(this.addToCartForm.value.count)
-    // console.log(this.tempCount)
   }
 
   addToCart(productId: string): void {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
@@ -9,7 +9,7 @@ import {LoginStart} from '../store/user/user.actions';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   constructor(private fb: FormBuilder, private userStore: Store<IState>) {
   }
@@ -22,9 +22,6 @@ export class LoginFormComponent implements OnInit {
   login(): void {
     const {email, password} = this.loginForm.value;
     this.userStore.dispatch(LoginStart({email, password}));
-  }
-
-  ngOnInit(): void {
   }
 
 }

@@ -25,11 +25,6 @@ const UserSchema = new Schema<IUser>({
     cart: {type: [ProductSchema], default: []}
 })
 
-UserSchema.path('idNumber').validate(async (idNumber: string) => {
-    const user = await User.findOne({ idNumber }).exec()
-    return !user
-}, 'User already exists')
-
 UserSchema.path('email').validate(async (email: string) => {
     const user = await User.findOne({ email }).exec()
     return !user

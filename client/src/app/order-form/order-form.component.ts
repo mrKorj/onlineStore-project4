@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ShippingDateValidator} from '../services/shippingDateValidator';
 import {Store} from '@ngrx/store';
@@ -14,7 +14,7 @@ const regxCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.css']
 })
-export class OrderFormComponent implements OnInit {
+export class OrderFormComponent {
   allCity: any = ['Jerusalem', 'Tel Aviv', 'Rishon Le Zion', 'Petah Tikva', 'Ashdod', 'Rehovot', 'Haifa', 'Carmiel', 'Eilat'];
 
   minDate = new Date().toISOString().split('T')[0];
@@ -41,9 +41,6 @@ export class OrderFormComponent implements OnInit {
     const order = this.orderForm.value;
     this.orderState.dispatch(addNewOrder({...order}));
     this.userState.dispatch(ClearCart());
-  }
-
-  ngOnInit(): void {
   }
 
 }

@@ -7,8 +7,8 @@
       <div class="prod" *ngFor="let product of (products$ | async)">
         <!--card-->
         <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="{{product.picUrl}}">
+          <div class="card-image" style="width: 250px; height: 165px; display: flex; justify-content: center">
+            <img class="activator" src="{{product.picUrl}}" style="cursor: pointer" alt="{{product.name}}">
           </div>
           <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{product.name}}<i
@@ -20,12 +20,12 @@
             class="material-icons right">close</i></span>
             <p>price: {{product.price}} $</p>
             <p>
-              <button class="btn-small blue lighten-2 waves-effect waves-light modal-trigger"
+              <button class="btn-small blue modal-trigger"
                       data-target="editProductModal" (click)="editModal(product._id)">edit product
               </button>
             </p>
             <p>
-              <button class="btn-small red lighten-2 waves-effect waves-light" (click)="deleteHandler(product._id)">
+              <button class="btn-small red" (click)="deleteHandler(product._id)">
                 delete product
               </button>
             </p>
@@ -59,7 +59,7 @@
         <button type="submit" class="modal-close waves-effect waves-green btn-small"
                 [disabled]="!editProductForm.valid">Save
         </button>
-        <a class="modal-close waves-effect btn-small red lighten-2" style="margin-left: 1rem">Close</a>
+        <a class="modal-close waves-effect btn-small red" style="margin-left: 1rem">Close</a>
       </div>
     </form>
   </div>

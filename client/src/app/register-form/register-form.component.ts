@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IUserState} from '../store/reducers/user.reducer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -8,6 +8,7 @@ import {User} from '../store/user/user.selectors';
 import {UserService} from '../services/user.service';
 import {RegisterStart} from '../store/user/user.actions';
 import {RegisterValidator} from '../services/registerValidator';
+import {OrderService} from '../services/order.service';
 
 export interface IRegisterData {
   email: string;
@@ -38,10 +39,10 @@ export class RegisterFormComponent implements OnInit {
     street: null
   };
   allCity: any = ['Jerusalem', 'Tel Aviv', 'Rishon Le Zion', 'Petah Tikva', 'Ashdod', 'Rehovot', 'Haifa', 'Carmiel', 'Eilat'];
-
+  totalOrders: number;
 
   constructor(private fb: FormBuilder, private userStore: Store<IState>, private userService: UserService,
-              private registerValidator: RegisterValidator) {
+              private registerValidator: RegisterValidator, private orderService: OrderService) {
     this.user$ = userStore.select(User);
   }
 
@@ -96,6 +97,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.orderService.getTotalOrders().subscribe(res => this.totalOrders = res.total);
   }
 
 }

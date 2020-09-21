@@ -82,7 +82,7 @@ export class UserEffects {
       map(cart => {
         M.toast({
           html: `<span class="flow-text">Product added to cart.</span>`,
-          displayLength: 6000,
+          displayLength: 3000,
           classes: 'rounded green'
         });
         return AddToCartSuccess({cart});

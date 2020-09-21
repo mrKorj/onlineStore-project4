@@ -1,5 +1,5 @@
-<div style="background: white">
-  <div class="container" style="min-height: calc(100vh - 65px)">
+<div style="background-image: url('../../assets/img/background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+<div class="container" style="min-height: calc(100vh - 65px)">
 
     <app-product-navbar></app-product-navbar>
 
@@ -7,13 +7,14 @@
       <div class="prod" *ngFor="let product of (products$ | async)">
         <!--card-->
         <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="{{product.picUrl}}">
+          <div class="card-image" style="width: 250px; height: 165px; display: flex; justify-content: center">
+            <img class="activator" src="{{product.picUrl}}" style="cursor: pointer" alt="{{product.name}}">
           </div>
+          <p class="divider"></p>
           <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{product.name}}<i
+            <span class="card-title activator grey-text text-darken-4">{{product.name}}<i
             class="right pink-text lighten-2 material-icons">add_circle</i></span>
-            <p>price: {{product.price}} $</p>
+            <p>price: <strong>{{product.price}} $</strong></p>
           </div>
 
           <div class="card-reveal">
@@ -28,7 +29,7 @@
                 <a (click)="countChange(1)"><i class="material-icons green-text">add_circle</i></a>
               </div>
               <p class="center">
-                <button type="submit" class="add btn-small pink darken-2 waves-effect waves-light card-title">to cart
+                <button type="submit" class="add btn-small pink darken-2 card-title">to cart
                 </button>
               </p>
             </form>

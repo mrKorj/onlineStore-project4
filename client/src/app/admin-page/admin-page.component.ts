@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IProduct} from '../store/reducers/product.reducer';
 import {Store} from '@ngrx/store';
@@ -13,7 +13,7 @@ import {FormBuilder, Validators} from '@angular/forms';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent {
 
   products$: Observable<IProduct[]>;
   productLoading: Observable<boolean>;
@@ -56,8 +56,6 @@ export class AdminPageComponent implements OnInit {
   editProduct(): void {
     const {name, price, picUrl} = this.editProductForm.value;
     this.productState.dispatch(editProduct({name, productId: this.editProd._id, price, picUrl}));
-  }
-  ngOnInit(): void {
   }
 
 }

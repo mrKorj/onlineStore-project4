@@ -17,6 +17,7 @@ a {
 .input-field input[type]:focus, .materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #d81b60 !important;
   box-shadow: 0 1px 0 0 #d81b60 !important;
+  background-color: transparent;
 }
 
 .input-field .prefix.active {

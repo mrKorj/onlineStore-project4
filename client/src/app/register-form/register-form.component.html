@@ -25,7 +25,7 @@
                 <div class="input-field inline col s12">
                   <input id="id" type="number" class="validate" formControlName="id" min="99999999" max="999999999">
                   <span class="helper-text" data-error="ID must be 9 digits"></span>
-                  <label for="id">ID Number</label>
+                  <label for="id">ID Number <small>(9 digits)</small></label>
                 </div>
 
                 <div class="input-field inline col s6">
@@ -92,7 +92,7 @@
         <p class="card-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur corporis dicta
           enim id, illum ipsum
           laboriosam laborum nam nemo sint sit suscipit voluptas. Neque.</p>
-        <strong class="pink-text lighten-2">satisfied customers in our store: {{42}}</strong>
+        <strong class="pink-text lighten-2">satisfied customers in our store: {{totalOrders}}</strong>
       </div>
     </div>
 

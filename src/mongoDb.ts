@@ -1,7 +1,5 @@
 import {connect} from 'mongoose'
-
-const MONGODB_URL = 'mongodb://localhost:27017'
-const DB_NAME = 'onlineStore'
+import {DB_NAME, MONGODB_URL} from '../configVariables'
 
 export async function connectDb() {
     await connect(MONGODB_URL, {

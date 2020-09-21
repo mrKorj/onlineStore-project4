@@ -9,8 +9,9 @@
   max-height: 350px;
 }
 
-img {
-  height: 165px;
+.card-image img {
+  width: auto;
+  max-height: 165px;
 }
 
 .card-title {

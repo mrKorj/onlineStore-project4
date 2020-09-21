@@ -8,9 +8,6 @@ import * as M from 'materialize-css';
 })
 export class ActionBtnComponent implements OnInit {
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     M.FloatingActionButton.init(document.getElementById('action-btn'));
   }

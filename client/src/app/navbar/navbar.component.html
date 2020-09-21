@@ -34,11 +34,11 @@
 <!--Sidenav menu-->
 <ul id="dropdown" class="sidenav" style="height: calc(100vh - 64px); margin-top: 64px">
   <li><a>Welcome {{(user$ | async).name || 'Guest'}} {{(user$ | async).lastName}}</a></li>
-  <li><a><i class="material-icons left">call</i>+972-3-1234567</a></li>
+  <li><a href="tel:+97231234567"><i class="material-icons left">call</i>+972-3-1234567</a></li>
   <li class="divider"></li>
   <li><a href="mailto:support@foody.com"><i class="material-icons left">alternate_email</i>support@foody.com</a></li>
   <li class="divider"></li>
-  <li><a class="sidenav-close" routerLink="/order/history">Orders History</a></li>
+  <li *ngIf="(user$ | async).role !== 'admin'"><a class="sidenav-close" routerLink="/order/history">Orders History</a></li>
   <li><a class="sidenav-close" href="#" (click)="logOut()">Log Out</a></li>
 </ul>
 

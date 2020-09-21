@@ -2,7 +2,7 @@ import {Router} from "express"
 import {compare} from "bcrypt";
 import {User} from "../collections/user"
 import jwt from 'jsonwebtoken'
-import {SECRET} from '../server'
+import {SECRET} from '../../configVariables'
 
 
 const router = Router()

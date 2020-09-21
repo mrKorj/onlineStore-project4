@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {IState} from '../store/reducers';
@@ -9,9 +9,9 @@ import {addProduct} from '../store/product/product.actions';
   templateUrl: './add-product-modal.component.html',
   styleUrls: ['./add-product-modal.component.css']
 })
-export class AddProductModalComponent implements OnInit {
+export class AddProductModalComponent {
 
-  allCategories = ['Milk & Eggs', 'Vegetables & Fruits', 'Meat & Fish', 'Wine & Drink', 'Sweets & Kandy'];
+  allCategories = ['Milk & Eggs', 'Vegetables & Fruits', 'Meat & Fish', 'Wine & Drink', 'Sweets & Snacks'];
 
   constructor(private fb: FormBuilder, private productStore: Store<IState>) {
   }
@@ -34,9 +34,6 @@ export class AddProductModalComponent implements OnInit {
   addProduct(): void {
     const {name, category, price, picUrl} = this.addProductForm.value;
     this.productStore.dispatch(addProduct({product: {name, category, price, picUrl}}));
-  }
-
-  ngOnInit(): void {
   }
 
 }

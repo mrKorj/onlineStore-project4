@@ -1,7 +1,7 @@
 import {Router} from "express"
 import {User} from "../collections/user"
 import jwt from 'jsonwebtoken'
-import {SECRET} from '../server'
+import {SECRET} from '../../configVariables'
 import {hash} from 'bcrypt'
 
 const router = Router()

@@ -14,6 +14,7 @@ import * as M from 'materialize-css';
 import {of} from 'rxjs';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {SERVER_URL} from '../../../../serverURL';
 
 
 @Injectable()
@@ -48,7 +49,7 @@ export class OrderEffects {
           confirmButtonText: 'Ok',
           allowOutsideClick: false,
           html:
-            'You can download the invoice from this ' + '<a href="http://localhost:4000/api/order/invoice">link</a>',
+            `You can download the invoice from this <a href="${SERVER_URL}/api/order/invoice">link</a>`,
         }).then(() => {
           this.router.navigateByUrl('/main');
         });

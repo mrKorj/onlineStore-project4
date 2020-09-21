@@ -4,12 +4,13 @@
       <div class="card large section">
         <h5 class="center pink-text">Your orders</h5>
         <div style="height: 70%; overflow-y: auto" class="card-content">
+          <p *ngIf="(orders$ | async).length === 0">no orders yet...</p>
           <ul>
             <li *ngFor="let order of (orders$ | async); let i = index">
               <a class="truncate" (click)="orderDetailsHandler(order._id, i)">
                 <span class="black-text">{{i + 1}}.</span>
                 order date: <strong class="black-text">{{order.orderDate | date}}</strong> - price: <strong
-                  class="black-text">{{order.totalPrice | number}}$</strong>
+                class="black-text">{{order.totalPrice | number}}$</strong>
               </a>
             </li>
           </ul>
@@ -22,9 +23,10 @@
     </div>
 
     <div class="col s12 m6 l6">
-      <div class="card large section">
-        <h5 class="center">Order details #{{index + 1}}</h5>
-        <div style="height: 90%; overflow-y: auto; min-width: 350px">
+      <div class="card large section" style="min-width: 340px">
+        <h5 class="center" *ngIf="(orders$ | async).length > 0">Order details #{{index + 1}}</h5>
+        <h5 class="center" *ngIf="(orders$ | async).length === 0">no orders yet...</h5>
+        <div style="height: 90%; overflow-y: auto">
           <ul>
             <li *ngFor="let details of orderDetails.items">
               <p class="truncate">
@@ -34,7 +36,7 @@
               </p>
             </li>
           </ul>
-
+          <p class="divider"></p>
           <p style="font-weight: bold" class="center">Total price: {{orderDetails.totalPrice | number}} $</p>
           <p style="font-weight: bold" class="center">Shipping date: {{orderDetails.shippingDate | date}}</p>
         </div>
